@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Univariate Analysis</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Univariate Analysis</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/univariate-analysis/">Univariate Analysis</a></h4>
+    <h5>March 3, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="univariate-analysis">Univariate Analysis</h3>
+
+<p>In general, there are three types of quantitative analysis.</p>
+
+<ul>
+<li>univariate (<em>one</em> variable)</li>
+<li>bivariate (<em>two</em> variables)</li>
+<li>multivariate (<em>more than two</em> variables)</li>
+</ul>
+
+<p>We will focus on <strong>univariate</strong> analysis in this article.</p>
+
+<h3 id="import-libraries">Import Libraries</h3>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+import scipy as sp
+import seaborn as sns
+</code></pre>
+
+<h3 id="set-seaborn-visualisation-options">Set Seaborn Visualisation Options</h3>
+
+<pre><code class="language-python">sns.set_style('whitegrid')
+sns.set_palette('Set3')
+</code></pre>
+
+<h3 id="load-dataset">Load Dataset</h3>
+
+<p>We will be using the tips dataset, which contains information collected by a waiter about his tips as well as the characteristics of the diner.</p>
+
+<pre><code class="language-python">tips = sns.load_dataset('tips')
+print(tips.head())
+</code></pre>
+
+<pre><code>   total_bill   tip     sex smoker  day    time  size
+0       16.99  1.01  Female     No  Sun  Dinner     2
+1       10.34  1.66    Male     No  Sun  Dinner     3
+2       21.01  3.50    Male     No  Sun  Dinner     3
+3       23.68  3.31    Male     No  Sun  Dinner     2
+4       24.59  3.61  Female     No  Sun  Dinner     4
+</code></pre>
+
+<h3 id="nominal-variables">Nominal Variables</h3>
+
+<p>For nominal variables, we can summarise the data using either a <em>frequency table</em> or a bar chart.</p>
+
+<pre><code class="language-python">sex_freq_table = tips['sex'].value_counts()
+print(sex_freq_table)
+</code></pre>
+
+<pre><code>Male      157
+Female     87
+Name: sex, dtype: int64
+</code></pre>
+
+<pre><code class="language-python"># to control the aspect ratio of the plot
+fig, ax = plt.subplots(figsize=(2.5, 5))
+
+# unfortunate variable naming
+sex_bar = sns.barplot(x=sex_freq_table.index, y=sex_freq_table.values)
+</code></pre>
+
+<p><img src="output_9_0.png" alt="png" /></p>
+
+<h3 id="interval-numerical-variables">Interval (Numerical) Variables</h3>
+
+<p>For numerical variables, we are interested in the following.</p>
+
+<ul>
+<li>Measures of central tendency (mean, mode, median).</li>
+<li>Measures of dispersion (standard deviation, variance).</li>
+</ul>
+
+<h3 id="measures-of-central-tendency">Measures of Central Tendency</h3>
+
+<p>NumPy is able to calculate mean and median, while we will utilise <code>scipy</code> to derive the mode.</p>
+
+<pre><code class="language-python">print(np.mean(tips['total_bill']))
+</code></pre>
+
+<pre><code>19.785942622950824
+</code></pre>
+
+<pre><code class="language-python">print(np.median(tips['total_bill']))
+</code></pre>
+
+<pre><code>17.795
+</code></pre>
+
+<pre><code class="language-python">print(sp.stats.mode(tips['total_bill']))
+</code></pre>
+
+<pre><code>ModeResult(mode=array([13.42]), count=array([3]))
+</code></pre>
+
+<h3 id="measures-of-dispersion">Measures of Dispersion</h3>
+
+<p>NumPy also comes with utility functions that calculate standard deviation and variance. We can adapt the functions to be used for both populations and samples by setting the appropriate degrees of freedom.</p>
+
+<pre><code class="language-python">print(np.std(tips['total_bill'], ddof=0))
+</code></pre>
+
+<pre><code>8.88415057777113
+</code></pre>
+
+<pre><code class="language-python">print(np.var(tips['total_bill'], ddof=0))
+</code></pre>
+
+<pre><code>78.92813148851113
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

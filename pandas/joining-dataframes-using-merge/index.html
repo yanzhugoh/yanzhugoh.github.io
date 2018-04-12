@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Joining DataFrames Using Merge</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Joining DataFrames Using Merge</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/joining-dataframes-using-merge/">Joining DataFrames Using Merge</a></h4>
+    <h5>February 7, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="joining-dataframes-using-merge">Joining DataFrames Using Merge</h3>
+
+<p>If you are familiar with SQL have just started using Pandas, I am sure that you are hoping for a function that mimics the <code>JOIN</code> functions. Rest assured - you will not be disappointed.</p>
+
+<h3 id="import-libraries">Import Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+</code></pre>
+
+<h3 id="load-data">Load Data</h3>
+
+<p>We will demonstrate the different types of joins using simulated data about people and their ice cream preferences.</p>
+
+<pre><code class="language-python">people_id = [1, 2, 3]
+people = ['Amy', 'Barry', 'Cory']
+
+people_df = pd.DataFrame(data=people, index=people_id)
+people_df.columns = ['Name']
+
+print(people_df)
+</code></pre>
+
+<pre><code>    Name
+1    Amy
+2  Barry
+3   Cory
+</code></pre>
+
+<pre><code class="language-python">flavor_id = [1, 2, 3]
+flavors = ['Chocolate', 'Strawberry', 'Vanilla']
+
+flavors_df = pd.DataFrame(data=flavors, index=flavor_id)
+flavors_df.columns = ['Flavor']
+
+print(flavors_df)
+</code></pre>
+
+<pre><code>       Flavor
+1   Chocolate
+2  Strawberry
+3     Vanilla
+</code></pre>
+
+<p>To link the data from the people and flavors dataframes, we will create a DataFrame that matches <code>people_id</code> and <code>flavor_id</code>.</p>
+
+<pre><code class="language-python">people_flavor = {'people_id': [1, 1, 1, 2, 2, 3], 
+                 'flavor_id': [1, 2, 3, 1, 2, 1]}
+people_flavor_df = pd.DataFrame(people_flavor)
+
+print(people_flavor_df)
+</code></pre>
+
+<pre><code>   flavor_id  people_id
+0          1          1
+1          2          1
+2          3          1
+3          1          2
+4          2          2
+5          1          3
+</code></pre>
+
+<p>Our end goal is to have a DataFrame that contains the person&rsquo;s name as well as their preferred flavor of ice cream. The first step is to combine the joining DataFrame with <code>people_df</code> to retrieve the names.</p>
+
+<p>We are able to specifiy a join between a specific column of a DataFrame and the index of another DataFrame.</p>
+
+<pre><code class="language-python">people_flavor_df = people_flavor_df.merge(people_df, how='inner', left_on='people_id', right_index=True)
+print(people_flavor_df)
+</code></pre>
+
+<pre><code>   flavor_id  people_id   Name
+0          1          1    Amy
+1          2          1    Amy
+2          3          1    Amy
+3          1          2  Barry
+4          2          2  Barry
+5          1          3   Cory
+</code></pre>
+
+<p>We complete the process by matching the indexes in column <code>flavor_id</code> with that in the <code>flavors_df</code>.</p>
+
+<pre><code class="language-python">people_flavor_df = people_flavor_df.merge(flavors_df, how='inner', 
+                                          left_on='flavor_id', right_index=True)
+print(people_flavor_df)
+</code></pre>
+
+<pre><code>   flavor_id  people_id   Name      Flavor
+0          1          1    Amy   Chocolate
+3          1          2  Barry   Chocolate
+5          1          3   Cory   Chocolate
+1          2          1    Amy  Strawberry
+4          2          2  Barry  Strawberry
+2          3          1    Amy     Vanilla
+</code></pre>
+
+<p>While our examples have been limited to inner joins, <code>merge</code> does allow us to specify the type of join using the <code>how</code> parameter.</p>
+
+<ul>
+<li><code>left</code> uses only keys in the left DataFrame, similar to an SQL left outer join</li>
+<li><code>right</code> uses only keys in the right DataFrame, similar to an SQL right outer join</li>
+<li><code>outer</code> uses the union of keys from both DataFrames, similar to an SQL full outer join</li>
+</ul></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

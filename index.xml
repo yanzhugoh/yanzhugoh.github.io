@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Journey</title>
+    <link>https://yanzhugoh.github.io/</link>
+    <description>Recent content on Journey</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yanzhugoh.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Project 1</title>
+      <link>https://yanzhugoh.github.io/statistics/statistics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Two-Sample t-Test</title>
+      <link>https://yanzhugoh.github.io/statistics/two-sample-t-test/</link>
+      <pubDate>Fri, 23 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/two-sample-t-test/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>One-Sample t-Test</title>
+      <link>https://yanzhugoh.github.io/statistics/one-sample-t-test/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/one-sample-t-test/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Central Limit Theorem</title>
+      <link>https://yanzhugoh.github.io/statistics/central-limit-theorem/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/central-limit-theorem/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Descriptive vs. Inferential Statistics</title>
+      <link>https://yanzhugoh.github.io/statistics/descriptive-vs.-inferential-statistics/</link>
+      <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/descriptive-vs.-inferential-statistics/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Boro Taxis - Hero of the Outer Boroughs</title>
+      <link>https://yanzhugoh.github.io/projects/boro-taxis-hero-of-the-outer-boroughs/</link>
+      <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/projects/boro-taxis-hero-of-the-outer-boroughs/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bivariate Analysis</title>
+      <link>https://yanzhugoh.github.io/pandas/bivariate-analysis/</link>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/bivariate-analysis/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Cleaning the Medallions</title>
+      <link>https://yanzhugoh.github.io/projects/cleaning-the-medallions/</link>
+      <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/projects/cleaning-the-medallions/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Univariate Analysis</title>
+      <link>https://yanzhugoh.github.io/pandas/univariate-analysis/</link>
+      <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/univariate-analysis/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Driving NYC</title>
+      <link>https://yanzhugoh.github.io/projects/driving-nyc/</link>
+      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/projects/driving-nyc/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Exploratory Data Analysis</title>
+      <link>https://yanzhugoh.github.io/pandas/exploratory-data-analysis/</link>
+      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/exploratory-data-analysis/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Categoricals</title>
+      <link>https://yanzhugoh.github.io/pandas/categoricals/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/categoricals/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Data Discretization</title>
+      <link>https://yanzhugoh.github.io/pandas/data-discretization/</link>
+      <pubDate>Sun, 25 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/data-discretization/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Applying Custom Functions to GroupBy Object</title>
+      <link>https://yanzhugoh.github.io/pandas/applying-custom-functions-to-groupby-object/</link>
+      <pubDate>Fri, 23 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/applying-custom-functions-to-groupby-object/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Basics of the Pandas GroupBy Object</title>
+      <link>https://yanzhugoh.github.io/pandas/basics-of-the-pandas-groupby-object/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/basics-of-the-pandas-groupby-object/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Creating a Range of Dates</title>
+      <link>https://yanzhugoh.github.io/pandas/creating-a-range-of-dates/</link>
+      <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/creating-a-range-of-dates/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Selecting and Filtering Data</title>
+      <link>https://yanzhugoh.github.io/pandas/selecting-and-filtering-data/</link>
+      <pubDate>Sat, 17 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/selecting-and-filtering-data/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Handling Multiple Values in One Column</title>
+      <link>https://yanzhugoh.github.io/pandas/handling-multiple-values-in-one-column/</link>
+      <pubDate>Thu, 15 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/handling-multiple-values-in-one-column/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Handling Missing Data - Replacement</title>
+      <link>https://yanzhugoh.github.io/pandas/handling-missing-data---replacement/</link>
+      <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/handling-missing-data---replacement/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Handling Missing Data - Removal</title>
+      <link>https://yanzhugoh.github.io/pandas/handling-missing-data---removal/</link>
+      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/handling-missing-data---removal/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Applying Functions to Columns or Rows</title>
+      <link>https://yanzhugoh.github.io/pandas/applying-functions-to-columns-or-rows/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/applying-functions-to-columns-or-rows/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Joining DataFrames Using Merge</title>
+      <link>https://yanzhugoh.github.io/pandas/joining-dataframes-using-merge/</link>
+      <pubDate>Wed, 07 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/joining-dataframes-using-merge/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generate Additional Features from Datetime</title>
+      <link>https://yanzhugoh.github.io/pandas/generate-additional-features-from-datetime/</link>
+      <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/generate-additional-features-from-datetime/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Convert String to Datetime</title>
+      <link>https://yanzhugoh.github.io/pandas/convert-string-to-datetime/</link>
+      <pubDate>Sat, 03 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/convert-string-to-datetime/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Appending Rows to DataFrame</title>
+      <link>https://yanzhugoh.github.io/pandas/appending-rows-to-dataframe/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/appending-rows-to-dataframe/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Sorting</title>
+      <link>https://yanzhugoh.github.io/pandas/sorting/</link>
+      <pubDate>Tue, 30 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/sorting/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rename Columns</title>
+      <link>https://yanzhugoh.github.io/pandas/rename-columns/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/rename-columns/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Removing Rows or Columns</title>
+      <link>https://yanzhugoh.github.io/pandas/removing-rows-or-columns/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/pandas/removing-rows-or-columns/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reproducible Randomness</title>
+      <link>https://yanzhugoh.github.io/numpy/reproducible-randomness/</link>
+      <pubDate>Wed, 24 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/numpy/reproducible-randomness/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Permutation and Shuffling</title>
+      <link>https://yanzhugoh.github.io/numpy/permutation-and-shuffling/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/numpy/permutation-and-shuffling/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating Random Numbers</title>
+      <link>https://yanzhugoh.github.io/numpy/generating-random-numbers/</link>
+      <pubDate>Sat, 20 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/numpy/generating-random-numbers/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating Numerical Sequences</title>
+      <link>https://yanzhugoh.github.io/numpy/generating-numerical-sequences/</link>
+      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/numpy/generating-numerical-sequences/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generators</title>
+      <link>https://yanzhugoh.github.io/python/generators/</link>
+      <pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/generators/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Exception Handling</title>
+      <link>https://yanzhugoh.github.io/python/exception-handling/</link>
+      <pubDate>Sun, 14 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/exception-handling/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Set Basics</title>
+      <link>https://yanzhugoh.github.io/python/set-basics/</link>
+      <pubDate>Fri, 12 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/set-basics/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dictionary Basics</title>
+      <link>https://yanzhugoh.github.io/python/dictionary-basics/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/dictionary-basics/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>List and String Slicing</title>
+      <link>https://yanzhugoh.github.io/python/list-and-string-slicing/</link>
+      <pubDate>Sat, 06 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/list-and-string-slicing/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>String Boolean Tests</title>
+      <link>https://yanzhugoh.github.io/python/string-boolean-tests/</link>
+      <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/string-boolean-tests/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>String Basics</title>
+      <link>https://yanzhugoh.github.io/python/string-basics/</link>
+      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/string-basics/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Migrate from Jekyll</title>
+      <link>https://yanzhugoh.github.io/scikit/migrate-from-jekyll/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/scikit/migrate-from-jekyll/</guid>
+      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
+▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
+▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Generate Additional Features from Datetime</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Generate Additional Features from Datetime</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/generate-additional-features-from-datetime/">Generate Additional Features from Datetime</a></h4>
+    <h5>February 5, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="generate-additional-features-from-datetime">Generate Additional Features from Datetime</h3>
+
+<p>Parsed your date/time fields as a Python <code>datetime</code> object? Great! Let&rsquo;s go one step further - depending on the problem, it can be extremely valuable to generate additional features of varying granularity from the <code>datetime</code> object.</p>
+
+<h3 id="load-libraries">Load Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+</code></pre>
+
+<h3 id="load-data">Load Data</h3>
+
+<p>The data from this exercise is adapted from Bay Area Bike Share&rsquo;s (now known as <a href="https://www.fordgobike.com/">Ford GoBike</a>) open data project to analyse and visualise ride information.</p>
+
+<pre><code class="language-python">data = [{'Trip ID': 913465, 'Start Date': '9/1/2015  00:10:00',  
+         'Start Station': 'San Francisco Caltrain 2 (330 Townsend)'},
+        {'Trip ID': 913468, 'Start Date': '9/1/2015  01:29:00', 
+         'Start Station': 'Clay at Battery'}, 
+        {'Trip ID': 913471, 'Start Date': '9/1/2015  02:15:00', 
+         'Start Station': 'Embarcadero at Bryant'}]
+
+df = pd.DataFrame(data)
+df['Start Date'] = pd.to_datetime(df['Start Date'], format='%m/%d/%Y %H:%M:%S')
+</code></pre>
+
+<h3 id="vectorised-datetime-function">Vectorised Datetime Function</h3>
+
+<p><code>pandas.Series.dt</code> allows us to apply a function to the entire column.</p>
+
+<h3 id="extract-hour">Extract Hour</h3>
+
+<pre><code class="language-python">df['Start Hour'] = df['Start Date'].dt.hour
+df[['Start Date', 'Start Hour']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>Start Hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 01:29:00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-09-01 02:15:00</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="extract-minute">Extract Minute</h3>
+
+<pre><code class="language-python">df['Start Minute'] = df['Start Date'].dt.minute
+df[['Start Date', 'Start Minute']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>Start Minute</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 01:29:00</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-09-01 02:15:00</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="extract-year">Extract Year</h3>
+
+<pre><code class="language-python">df['Start Year'] = df['Start Date'].dt.year
+df[['Start Date', 'Start Year']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>Start Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 01:29:00</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-09-01 02:15:00</td>
+      <td>2015</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="extract-month">Extract Month</h3>
+
+<pre><code class="language-python">df['Start Month'] = df['Start Date'].dt.month
+df[['Start Date', 'Start Month']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>Start Month</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 01:29:00</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-09-01 02:15:00</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="convert-numerical-month-to-alphabetical-representation">Convert Numerical Month to Alphabetical Representation</h3>
+
+<p>We can use the <code>calendar</code> module&rsquo;s <code>month_name()</code> function to perform the conversion. It works by mapping 1 to &lsquo;January&rsquo;, 2 to &lsquo;February&rsquo; and so on (note that it is not zero-indexed so as to make it more user-friendly).</p>
+
+<pre><code class="language-python">import calendar
+
+df['Start Month Name'] = df['Start Month'].apply(lambda x: calendar.month_name[x])
+df[['Start Date', 'Start Month Name']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>Start Month Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>September</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 01:29:00</td>
+      <td>September</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-09-01 02:15:00</td>
+      <td>September</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>If you&rsquo;re looking for the abbreviated version, <code>month_abbr()</code> has you covered.</p>
+
+<pre><code class="language-python">df['Start Month Abbr'] = df['Start Month'].apply(lambda x: calendar.month_abbr[x])
+df[['Start Date', 'Start Month Abbr']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>Start Month Abbr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>Sep</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 01:29:00</td>
+      <td>Sep</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-09-01 02:15:00</td>
+      <td>Sep</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="extract-day-of-week">Extract Day of Week</h3>
+
+<p>The <code>dayofweek</code> function returns a zero-indexed representation of the day of the week, where 0 is Monday and 6 is Sunday.</p>
+
+<pre><code class="language-python">df['Start Day'] = df['Start Date'].dt.dayofweek
+df[['Start Date', 'Start Day']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>Start Day</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 01:29:00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-09-01 02:15:00</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="convert-numerical-day-to-alphabetical-representation">Convert Numerical Day to Alphabetical Representation</h3>
+
+<p>To get an alphabetical representation of the day of week, the <code>calendar</code> module provides two handy functions - <code>day_name</code> and <code>day_abbr</code>.</p>
+
+<pre><code class="language-python">df['Start Day Name'] = df['Start Day'].apply(lambda x: calendar.day_name[x])
+df['Start Day Abbr'] = df['Start Day'].apply(lambda x: calendar.day_abbr[x])
+df[['Start Day Name', 'Start Day Abbr']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Day Name</th>
+      <th>Start Day Abbr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Tuesday</td>
+      <td>Tue</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Tuesday</td>
+      <td>Tue</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Tuesday</td>
+      <td>Tue</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

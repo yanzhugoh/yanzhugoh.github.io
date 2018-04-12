@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sorting</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Sorting</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/sorting/">Sorting</a></h4>
+    <h5>January 30, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="sorting">Sorting</h3>
+
+<p>The <code>sort_values</code> function enables us to easily sort data stored in a Series or DataFrame.</p>
+
+<h3 id="load-libraries">Load Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+</code></pre>
+
+<h3 id="load-data">Load Data</h3>
+
+<pre><code class="language-python">series = pd.Series([500, 100, 50, 5, 50, 100, 500])
+</code></pre>
+
+<p>By default, the data is sorted in ascending order. Note that the indexes are unchanged.</p>
+
+<pre><code class="language-python">print(series.sort_values())
+</code></pre>
+
+<pre><code>3      5
+2     50
+4     50
+1    100
+5    100
+0    500
+6    500
+dtype: int64
+</code></pre>
+
+<p>You can pass the parameter <code>ascending=False</code> to sort the series in descending order.</p>
+
+<pre><code class="language-python">print(series.sort_values(ascending=False))
+</code></pre>
+
+<pre><code>6    500
+0    500
+5    100
+1    100
+4     50
+2     50
+3      5
+dtype: int64
+</code></pre>
+
+<p>It is also possible to sort on the index.</p>
+
+<pre><code class="language-python">print(series.sort_index())
+</code></pre>
+
+<pre><code>0    500
+1    100
+2     50
+3      5
+4     50
+5    100
+6    500
+dtype: int64
+</code></pre>
+
+<h3 id="load-data-to-dataframe">Load Data to DataFrame</h3>
+
+<pre><code class="language-python">sales_data = {'month': ['Jan', 'Feb', 'Jan', 'Feb'], 
+              'flavors': ['chocolate', 'vanilla', 'chocolate', 'vanilla'], 
+              'cost_price_dollars': [0.50, 0.45, 0.55, 0.50], 
+              'number_sold': [100, 150, 200, 125]}
+
+sales = pd.DataFrame(sales_data, columns=['month', 'flavors', 'cost_price_dollars', 'number_sold'])
+print(sales.head())
+</code></pre>
+
+<pre><code>  month    flavors  cost_price_dollars  number_sold
+0   Jan  chocolate                0.50          100
+1   Feb    vanilla                0.45          150
+2   Jan  chocolate                0.55          200
+3   Feb    vanilla                0.50          125
+</code></pre>
+
+<p>Sorting the values of a column is easy - simply select the column and call the <code>sort_values</code> function.</p>
+
+<pre><code class="language-python">print(sales['flavors'].sort_values())
+</code></pre>
+
+<pre><code>0    chocolate
+2    chocolate
+1      vanilla
+3      vanilla
+Name: flavors, dtype: object
+</code></pre>
+
+<p>You can sort multiple columns through the use of the <code>by</code> parameter.</p>
+
+<pre><code class="language-python">print(sales[['month', 'flavors']].sort_values(by=['month', 'flavors']))
+</code></pre>
+
+<pre><code>  month    flavors
+1   Feb    vanilla
+3   Feb    vanilla
+0   Jan  chocolate
+2   Jan  chocolate
+</code></pre>
+
+<p>When sorting multiple columns, the <code>ascending</code> parameter has an additional function - it lets us specify the order in which each column stated in the <code>by</code> parameter is being sorted.</p>
+
+<pre><code class="language-python">print(sales[['month', 'flavors']].sort_values(by=['month', 'flavors'], ascending=[False, True]))
+</code></pre>
+
+<pre><code>  month    flavors
+0   Jan  chocolate
+2   Jan  chocolate
+1   Feb    vanilla
+3   Feb    vanilla
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

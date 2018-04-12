@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>String Boolean Tests</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">String Boolean Tests</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/python/string-boolean-tests/">String Boolean Tests</a></h4>
+    <h5>January 4, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="string-boolean-tests">String Boolean Tests</h3>
+
+<p>Control structures form a large part of any workflow, and having a good understanding of the boolean checks that we can perform on strings is essential for data wrangling prior to analysis.</p>
+
+<h3 id="case-checks">Case Checks</h3>
+
+<p><code>isupper()</code> returns <code>True</code> if <strong>all</strong> characters in the string are uppercase.</p>
+
+<pre><code class="language-python">'HELLO'.isupper()
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<pre><code class="language-python">'Hello'.isupper()
+</code></pre>
+
+<pre><code>False
+</code></pre>
+
+<p><code>islower()</code> returns <code>True</code> if <strong>all</strong> characters in the string are lowercase.</p>
+
+<pre><code class="language-python">'hello'.islower()
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<pre><code class="language-python">'Hello'.islower()
+</code></pre>
+
+<pre><code>False
+</code></pre>
+
+<p><code>istitle()</code> returns <code>True</code> if <strong>all</strong> starting characters in the string are capitalised.</p>
+
+<pre><code class="language-python">'Hello World'.istitle()
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<pre><code class="language-python">'hello world'.istitle()
+</code></pre>
+
+<pre><code>False
+</code></pre>
+
+<h3 id="start-and-end-checks">Start and End Checks</h3>
+
+<p>Do note that Python is a case-sensitive language, as you can see from the following examples.</p>
+
+<pre><code class="language-python">'Hello'.startswith('H')
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<pre><code class="language-python">'Hello'.startswith('h')
+</code></pre>
+
+<pre><code>False
+</code></pre>
+
+<pre><code class="language-python">'Hello'.endswith('o')
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<pre><code class="language-python">'Hello'.endswith('O')
+</code></pre>
+
+<pre><code>False
+</code></pre>
+
+<h3 id="type-checks">Type Checks</h3>
+
+<p><code>isalnum()</code> checks if <strong>all</strong> characters in the string are alphanumeric.</p>
+
+<pre><code class="language-python">'abc123'.isalnum()
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<pre><code class="language-python">'abc123!'.isalnum()
+</code></pre>
+
+<pre><code>False
+</code></pre>
+
+<p><code>isalpha()</code> checks if <strong>all</strong> characters in the string are alphabets.</p>
+
+<pre><code class="language-python">'abc123'.isalpha()
+</code></pre>
+
+<pre><code>False
+</code></pre>
+
+<pre><code class="language-python">'abc'.isalpha()
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<p><code>isdigit()</code> checks if <strong>all</strong> characters in the string are numbers.</p>
+
+<pre><code class="language-python">'123'.isdigit()
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<pre><code class="language-python">'123a'.isdigit()
+</code></pre>
+
+<pre><code>False
+</code></pre>
+
+<p><code>isspace()</code> checks if <strong>all</strong> characters in the string are spaces.</p>
+
+<pre><code class="language-python">'  '.isspace()
+</code></pre>
+
+<pre><code>True
+</code></pre>
+
+<pre><code class="language-python">' a '.isspace()
+</code></pre>
+
+<pre><code>False
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Selecting and Filtering Data</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Selecting and Filtering Data</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/selecting-and-filtering-data/">Selecting and Filtering Data</a></h4>
+    <h5>February 17, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="selecting-and-filtering-data">Selecting and Filtering Data</h3>
+
+<p>Being able to select and filter data easily is probably the most important feature in Pandas. We begin by demonstrating how this works for Series objects, followed by DataFrames.</p>
+
+<h3 id="import-libraries">Import Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+import seaborn as sns # to retrieve the titanic dataset
+</code></pre>
+
+<h3 id="load-data">Load Data</h3>
+
+<pre><code class="language-python">names = ['Amy', 'Berry', 'Cory', 'Dewy', 'Eeewy']
+flavors = ['chocolate', 'vanilla', 'strawberry', 'vanilla', 'strawberry']
+preferences = pd.Series(data=flavors, index=names)
+print(preferences)
+</code></pre>
+
+<pre><code>Amy       chocolate
+Berry       vanilla
+Cory     strawberry
+Dewy        vanilla
+Eeewy    strawberry
+dtype: object
+</code></pre>
+
+<p>Data in Pandas can be assessed either by <em>label</em>, or by <em>integer (row/column numbers)</em>.</p>
+
+<h3 id="selection-by-integer">Selection by Integer</h3>
+
+<p>The <code>iloc</code> operator allows us to select the <em>values</em> by integer (row or column numbers).</p>
+
+<pre><code class="language-python">print(preferences.iloc[0])
+</code></pre>
+
+<pre><code>chocolate
+</code></pre>
+
+<p><code>Series</code> objects also allow for Python indexing and slicing.</p>
+
+<pre><code class="language-python">print(preferences[0])
+</code></pre>
+
+<pre><code>chocolate
+</code></pre>
+
+<pre><code class="language-python">print(preferences[0:2])
+</code></pre>
+
+<pre><code>Amy      chocolate
+Berry      vanilla
+dtype: object
+</code></pre>
+
+<h3 id="selection-by-label">Selection by Label</h3>
+
+<p><code>loc</code> allows us to select using an identifier, or a list of identifiers.</p>
+
+<pre><code class="language-python">print(preferences.loc['Amy'])
+</code></pre>
+
+<pre><code>chocolate
+</code></pre>
+
+<pre><code class="language-python">print(preferences.loc[['Amy', 'Berry']])
+</code></pre>
+
+<pre><code>Amy      chocolate
+Berry      vanilla
+dtype: object
+</code></pre>
+
+<h3 id="series-filtering">Series Filtering</h3>
+
+<p>There are multiple ways that we can filter data in a Series.</p>
+
+<p>The first is to place the criteria (a string that evaluates to <code>True</code>/<code>False</code>) within square brackets.</p>
+
+<pre><code class="language-python">preferences[preferences=='chocolate']
+</code></pre>
+
+<pre><code>Amy    chocolate
+dtype: object
+</code></pre>
+
+<p>Boolean operators (such as <code>&amp;</code> and <code>|</code>) can also be used.</p>
+
+<pre><code class="language-python">preferences[(preferences=='chocolate') | (preferences=='vanilla')]
+</code></pre>
+
+<pre><code>Amy      chocolate
+Berry      vanilla
+Dewy       vanilla
+dtype: object
+</code></pre>
+
+<p>The <code>filter</code> function also allows us to select via the labels.</p>
+
+<pre><code class="language-python">preferences.filter(items=['Amy'])
+</code></pre>
+
+<pre><code>Amy    chocolate
+dtype: object
+</code></pre>
+
+<h3 id="dataframe-selection-and-filtering">DataFrame Selection and Filtering</h3>
+
+<p>There are strong parallels between how selection and filtering is performed for Series and DataFrames, and expectedly it is slightly more involved for DataFrames due to their 2d nature.</p>
+
+<h3 id="load-dataframe-data">Load DataFrame Data</h3>
+
+<pre><code class="language-python">titanic = sns.load_dataset('titanic')
+print(titanic.head())
+</code></pre>
+
+<pre><code>   survived  pclass     sex   age  sibsp  parch     fare embarked  class  \
+0         0       3    male  22.0      1      0   7.2500        S  Third   
+1         1       1  female  38.0      1      0  71.2833        C  First   
+2         1       3  female  26.0      0      0   7.9250        S  Third   
+3         1       1  female  35.0      1      0  53.1000        S  First   
+4         0       3    male  35.0      0      0   8.0500        S  Third   
+
+     who  adult_male deck  embark_town alive  alone  
+0    man        True  NaN  Southampton    no  False  
+1  woman       False    C    Cherbourg   yes  False  
+2  woman       False  NaN  Southampton   yes   True  
+3  woman       False    C  Southampton   yes  False  
+4    man        True  NaN  Southampton    no   True  
+</code></pre>
+
+<h3 id="dataframe-selection">DataFrame Selection</h3>
+
+<p>You can select a column by placing its identifier in square brackets. Multiple columns can be selected using a list of identifiers.</p>
+
+<pre><code class="language-python">print(titanic['sex'].head())
+</code></pre>
+
+<pre><code>0      male
+1    female
+2    female
+3    female
+4      male
+Name: sex, dtype: object
+</code></pre>
+
+<pre><code class="language-python">print(titanic[['survived', 'sex']].head())
+</code></pre>
+
+<pre><code>   survived     sex
+0         0    male
+1         1  female
+2         1  female
+3         1  female
+4         0    male
+</code></pre>
+
+<p>You can also select columns using the <code>loc</code> function. For a DataFrame, the first parameter of <code>loc</code> references the rows, while the second references the columns.</p>
+
+<pre><code class="language-python"># retrieve all rows
+
+print(titanic.loc[:, ['survived', 'sex']].head())
+</code></pre>
+
+<pre><code>   survived     sex
+0         0    male
+1         1  female
+2         1  female
+3         1  female
+4         0    male
+</code></pre>
+
+<pre><code class="language-python"># retrieve only the first 2 rows
+
+print(titanic.loc[0:2, ['survived', 'sex']])
+</code></pre>
+
+<pre><code>   survived     sex
+0         0    male
+1         1  female
+2         1  female
+</code></pre>
+
+<h3 id="dataframe-filtering">DataFrame Filtering</h3>
+
+<p>Filtering a DataFrame is very similar to how you would filter a Series - simply place the criterion/criteria between square brackets.</p>
+
+<pre><code class="language-python">print(titanic[titanic['sex']=='male'].head(1))
+</code></pre>
+
+<pre><code>   survived  pclass   sex   age  sibsp  parch  fare embarked  class  who  \
+0         0       3  male  22.0      1      0  7.25        S  Third  man   
+
+   adult_male deck  embark_town alive  alone  
+0        True  NaN  Southampton    no  False  
+</code></pre>
+
+<p>You can also access columns using <code>.</code> if you do not wish to use the square brackets.</p>
+
+<pre><code class="language-python">print(titanic[titanic.sex=='male'].head(1))
+</code></pre>
+
+<pre><code>   survived  pclass   sex   age  sibsp  parch  fare embarked  class  who  \
+0         0       3  male  22.0      1      0  7.25        S  Third  man   
+
+   adult_male deck  embark_town alive  alone  
+0        True  NaN  Southampton    no  False  
+</code></pre>
+
+<p>You can filter on multiple criteria by chaining them with boolean operators.</p>
+
+<pre><code class="language-python">print(titanic[(titanic['sex']=='male') &amp; (titanic['pclass']==3)].head(1))
+</code></pre>
+
+<pre><code>   survived  pclass   sex   age  sibsp  parch  fare embarked  class  who  \
+0         0       3  male  22.0      1      0  7.25        S  Third  man   
+
+   adult_male deck  embark_town alive  alone  
+0        True  NaN  Southampton    no  False  
+</code></pre>
+
+<pre><code class="language-python">print(titanic[(titanic.sex=='male') &amp; (titanic.pclass==3)].head(1))
+</code></pre>
+
+<pre><code>   survived  pclass   sex   age  sibsp  parch  fare embarked  class  who  \
+0         0       3  male  22.0      1      0  7.25        S  Third  man   
+
+   adult_male deck  embark_town alive  alone  
+0        True  NaN  Southampton    no  False  
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

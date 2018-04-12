@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Numpy on Journey</title>
+    <link>https://yanzhugoh.github.io/numpy/</link>
+    <description>Recent content in Numpy on Journey</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 24 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yanzhugoh.github.io/numpy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reproducible Randomness</title>
+      <link>https://yanzhugoh.github.io/numpy/reproducible-randomness/</link>
+      <pubDate>Wed, 24 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/numpy/reproducible-randomness/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Permutation and Shuffling</title>
+      <link>https://yanzhugoh.github.io/numpy/permutation-and-shuffling/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/numpy/permutation-and-shuffling/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating Random Numbers</title>
+      <link>https://yanzhugoh.github.io/numpy/generating-random-numbers/</link>
+      <pubDate>Sat, 20 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/numpy/generating-random-numbers/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating Numerical Sequences</title>
+      <link>https://yanzhugoh.github.io/numpy/generating-numerical-sequences/</link>
+      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/numpy/generating-numerical-sequences/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

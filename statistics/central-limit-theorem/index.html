@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Central Limit Theorem</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Central Limit Theorem</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/statistics/central-limit-theorem/">Central Limit Theorem</a></h4>
+    <h5>March 19, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="central-limit-theorem">Central Limit Theorem</h3>
+
+<p>The central limit theorem states that the distribution of sampling means approaches a normal distribution as more samples are drawn, provided that the sample size of each sampling mean is at least 30 (based on a rule of thumb). This holds true regardless of the shape of the underlying distribution.</p>
+
+<p>This definition is certainly not the easiest to comprehend, but understanding it is absolutely essential towards the application of inferential statistics.</p>
+
+<p>We will break down and demonstrate the theorem using an example that should be palatable to most people - a simulation of a fair six-sided die.</p>
+
+<h3 id="import-libraries">Import Libraries</h3>
+
+<pre><code class="language-python">import numpy as np
+import seaborn as sns
+%matplotlib inline
+</code></pre>
+
+<h3 id="set-seaborn-visualisation-options">Set Seaborn Visualisation Options</h3>
+
+<pre><code class="language-python">sns.set_style('whitegrid')
+sns.set_palette('Set3')
+</code></pre>
+
+<h3 id="generate-dice-roll-dataset">Generate Dice Roll Dataset</h3>
+
+<p>We begin by generating the result of 1000 dice-rolls. While ideally we expect the results to be uniformly distributed, this is a random process and some variance is to be expected.</p>
+
+<pre><code class="language-python">dice_rolls = np.random.randint(low=1, high=7, size=1000)
+sns.countplot(dice_rolls)
+</code></pre>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x151e6d21e80&gt;
+</code></pre>
+
+<p><img src="output_7_1.png" alt="png" /></p>
+
+<p>To demonstrate the central limit theorem, we will first draw 10 samples (without replacement) of size 10 from our simulated dice rolls. We will store the average of each sample in a list and plot a histogram of the results.</p>
+
+<p>Due to the low sample size, the sample means do not appear to follow any distribution.</p>
+
+<pre><code class="language-python">sample_size = 10
+no_samples = 10
+sample_means = [np.mean(np.random.choice(dice_rolls, sample_size, replace=False)) for _ in range(no_samples)]
+
+sns.distplot(sample_means)
+</code></pre>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x151e6df4470&gt;
+</code></pre>
+
+<p><img src="output_9_1.png" alt="png" /></p>
+
+<p>We next hold the number of samples constant and increase the sample size to 30. There is now less variance around the sample means, but I would still not consider it normally distributed.</p>
+
+<pre><code class="language-python">sample_size = 30
+no_samples = 10
+sample_means = [np.mean(np.random.choice(dice_rolls, sample_size, replace=False)) for _ in range(no_samples)]
+
+sns.distplot(sample_means)
+</code></pre>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x151e5971a90&gt;
+</code></pre>
+
+<p><img src="output_11_1.png" alt="png" /></p>
+
+<p>In our next iteration, we hold sample size constant and increase the number of samples to 30. You will see that the distribution of sampling means is more granular and takes on a slightly more normal shape.</p>
+
+<pre><code class="language-python">sample_size = 30
+no_samples = 30
+sample_means = [np.mean(np.random.choice(dice_rolls, sample_size, replace=False)) for _ in range(no_samples)]
+
+sns.distplot(sample_means)
+</code></pre>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x151e6f155c0&gt;
+</code></pre>
+
+<p><img src="output_13_1.png" alt="png" /></p>
+
+<p>Increasing the number of samples increases the granularity of the sampling means.</p>
+
+<pre><code class="language-python">sample_size = 30
+no_samples = 100
+sample_means = [np.mean(np.random.choice(dice_rolls, sample_size, replace=False)) for _ in range(no_samples)]
+
+sns.distplot(sample_means)
+</code></pre>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x151e6f64e80&gt;
+</code></pre>
+
+<p><img src="output_15_1.png" alt="png" /></p>
+
+<p>Lastly, for the sake of demonstration, we double both the sample size and number of samples to demonstrate its effect on the granularity of the distribution.</p>
+
+<pre><code class="language-python">sample_size = 60
+no_samples = 200
+sample_means = [np.mean(np.random.choice(dice_rolls, sample_size, replace=False)) for _ in range(no_samples)]
+
+sns.distplot(sample_means)
+</code></pre>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x151e6f97198&gt;
+</code></pre>
+
+<p><img src="output_17_1.png" alt="png" /></p>
+
+<h3 id="summary">Summary</h3>
+
+<ul>
+<li>The sample means will be distributed roughly as a normal distribution around the population mean. In our example, the sample means (average of the dice rolls within each sample) will be normally distributed around the mean of our initial 1000 dice rolls.</li>
+<li>The above will be true regardless of the distribution of the underlying population. In our case, it did not matter that our underlying distribution was approximately uniform.</li>
+</ul></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

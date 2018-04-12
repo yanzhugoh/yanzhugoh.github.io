@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Convert String to Datetime</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Convert String to Datetime</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/convert-string-to-datetime/">Convert String to Datetime</a></h4>
+    <h5>February 3, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="convert-string-to-datetime">Convert String to Datetime</h3>
+
+<p>Before we can perform time-series analysis, it helps greatly to convert the column to Python&rsquo;s datatime object.</p>
+
+<h3 id="load-libraries">Load Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+</code></pre>
+
+<h3 id="load-data">Load Data</h3>
+
+<p>The data that we will use for this exercise is adapted from Bay Area Bike Share&rsquo;s (now known as <a href="https://www.fordgobike.com/">Ford GoBike</a>) open data project to analyse and visualise ride information.</p>
+
+<pre><code class="language-python">data = [{'Trip ID': 913465, 'Start Date': '9/1/2015  00:10:00', 
+         'End Date': '9/1/2015  00:23:00', 
+         'Start Station': 'San Francisco Caltrain 2 (330 Townsend)'},
+        {'Trip ID': 913466, 'Start Date': '9/1/2015  00:15:00', 
+         'End Date': '9/1/2015  00:31:00', 
+         'Start Station': 'Clay at Battery'}]
+
+df = pd.DataFrame(data)
+print(df.dtypes)
+</code></pre>
+
+<pre><code>End Date         object
+Start Date       object
+Start Station    object
+Trip ID           int64
+dtype: object
+</code></pre>
+
+<p>By default, Pandas does not parse the strings to datetime objects. We will need to do so ourselves.</p>
+
+<h3 id="parsing-string-to-datetime">Parsing String to Datetime</h3>
+
+<p>Pandas&rsquo; <code>to_datetime</code> function transforms the input strings to datetime objects. You can find more information on how to create the <code>format</code> parameter on <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python&rsquo;s strftime() and strptime() documentation</a> page.</p>
+
+<pre><code class="language-python">df['Start Date'] = pd.to_datetime(df['Start Date'], 
+                                  format='%m/%d/%Y %H:%M:%S')
+df['End Date'] = pd.to_datetime(df['End Date'], 
+                                format='%m/%d/%Y %H:%M:%S')
+
+print(df.dtypes)
+</code></pre>
+
+<pre><code>End Date         datetime64[ns]
+Start Date       datetime64[ns]
+Start Station            object
+Trip ID                   int64
+dtype: object
+</code></pre>
+
+<p>Having the <code>Start Date</code> and <code>End Date</code> columns in <code>datetime</code> allows for far easier manipulation of the data.</p>
+
+<pre><code class="language-python">df['Ride Time'] = df['End Date'] - df['Start Date']
+df.loc[:, ['Start Date', 'End Date', 'Ride Time']].head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Ride Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>2015-09-01 00:23:00</td>
+      <td>00:13:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 00:15:00</td>
+      <td>2015-09-01 00:31:00</td>
+      <td>00:16:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

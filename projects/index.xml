@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Journey</title>
+    <link>https://yanzhugoh.github.io/projects/</link>
+    <description>Recent content in Projects on Journey</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yanzhugoh.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Boro Taxis - Hero of the Outer Boroughs</title>
+      <link>https://yanzhugoh.github.io/projects/boro-taxis-hero-of-the-outer-boroughs/</link>
+      <pubDate>Thu, 08 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/projects/boro-taxis-hero-of-the-outer-boroughs/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Cleaning the Medallions</title>
+      <link>https://yanzhugoh.github.io/projects/cleaning-the-medallions/</link>
+      <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/projects/cleaning-the-medallions/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Driving NYC</title>
+      <link>https://yanzhugoh.github.io/projects/driving-nyc/</link>
+      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/projects/driving-nyc/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

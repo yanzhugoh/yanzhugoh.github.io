@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dictionary Basics</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Dictionary Basics</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/python/dictionary-basics/">Dictionary Basics</a></h4>
+    <h5>January 10, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="dictionary-basics">Dictionary Basics</h3>
+
+<p>Dictionaries in Python allow us to work with data that has a <em>key: value</em> relationship, with the key in each dictionary being <em>unique</em> and <em>immutable</em> (cannot be modified).</p>
+
+<h3 id="creating-a-dictionary">Creating a Dictionary</h3>
+
+<p>An empty dictionary can be created by a pair of empty curly braces.</p>
+
+<pre><code class="language-python">empty_dict = {}
+print(empty_dict)
+</code></pre>
+
+<pre><code>{}
+</code></pre>
+
+<p>The <code>dict()</code> function produces the same result.</p>
+
+<pre><code class="language-python">empty_dict = dict()
+print(empty_dict)
+</code></pre>
+
+<pre><code>{}
+</code></pre>
+
+<p>Expectedly, an empty dictionary is not very interesting. Let&rsquo;s create a dictionary to store the ice cream preferences of Mary, Jane and June.</p>
+
+<p>The items in a dictionary are enclosed in curly braces, with each <em>key: value</em> pair seperated by a colon.</p>
+
+<pre><code class="language-python">preferences = {'Mary': 'vanilla', 
+               'Jane': 'chocolate',
+               'June': 'chocolate'}
+print(preferences)
+</code></pre>
+
+<pre><code>{'Mary': 'vanilla', 'Jane': 'chocolate', 'June': 'chocolate'}
+</code></pre>
+
+<h3 id="accessing-data-in-a-dictionary">Accessing Data in a Dictionary</h3>
+
+<p>To retrive the girls&rsquo; names, we can use the <code>keys()</code> function.</p>
+
+<pre><code class="language-python">print(preferences.keys())
+</code></pre>
+
+<pre><code>dict_keys(['Mary', 'Jane', 'June'])
+</code></pre>
+
+<p><code>values()</code> allows us to retrieve the flavors.</p>
+
+<pre><code class="language-python">print(preferences.values())
+</code></pre>
+
+<pre><code>dict_values(['vanilla', 'chocolate', 'chocolate'])
+</code></pre>
+
+<p>If we want to iterate on each key-value pair, we can use the <code>items()</code> function.</p>
+
+<pre><code class="language-python">for key, value in preferences.items():
+    print('Key: ' + key)
+    print('Value: ' + value + '\n')
+</code></pre>
+
+<pre><code>Key: Mary
+Value: vanilla
+
+Key: Jane
+Value: chocolate
+
+Key: June
+Value: chocolate
+</code></pre>
+
+<p>You can access values directly if you know the key.</p>
+
+<pre><code class="language-python">print(preferences['Mary'])
+</code></pre>
+
+<pre><code>vanilla
+</code></pre>
+
+<h3 id="removing-data-from-a-dictionary">Removing Data from a Dictionary</h3>
+
+<p>There are two ways that we can remove data from a dictionary. The first is by using the <code>del</code> keyword.</p>
+
+<pre><code class="language-python">preferences['John'] = 'strawberry'
+print(preferences['John'])
+</code></pre>
+
+<pre><code>strawberry
+</code></pre>
+
+<pre><code class="language-python">del preferences['John']
+print(preferences)
+</code></pre>
+
+<pre><code>{'Mary': 'vanilla', 'Jane': 'chocolate', 'June': 'chocolate'}
+</code></pre>
+
+<p>The second way is by using the <code>pop()</code> function. The key difference is that <code>pop()</code> returns the value of the key that was removed.</p>
+
+<pre><code class="language-python">preferences['John'] = 'strawberry'
+print(preferences['John'])
+</code></pre>
+
+<pre><code>strawberry
+</code></pre>
+
+<pre><code class="language-python">print('Result of pop function: ' + preferences.pop('John'))
+print(preferences)
+</code></pre>
+
+<pre><code>Result of pop function: strawberry
+{'Mary': 'vanilla', 'Jane': 'chocolate', 'June': 'chocolate'}
+</code></pre>
+
+<h3 id="handling-missing-keys">Handling Missing Keys</h3>
+
+<p>When we attempt to access a non-existent key in the dictionary, it will result in a <code>KeyError</code>. This is certainly not a desired behavior in any production system.</p>
+
+<p>Let&rsquo;s assume that we are given a list of words and tasked to count the number of times each word appears in the list. How can we do this using a dictionary, and without running into a <code>KeyError</code>?</p>
+
+<p>Below, you will see two ways that we can achieve this.</p>
+
+<pre><code class="language-python">words = ['apple', 'apple', 'apple', 'banana', 'banana', 'cucumber']
+word_counts = {}
+
+for word in words:
+    word_counts.setdefault(word, 0)
+    word_counts[word] += 1
+
+print(word_counts)
+</code></pre>
+
+<pre><code>{'apple': 3, 'banana': 2, 'cucumber': 1}
+</code></pre>
+
+<p>An alternative method will be to create a <code>defaultdict</code> (from Python&rsquo;s in-built collection of <a href="https://docs.python.org/2/library/collections.html">high performance data structures</a>)</p>
+
+<pre><code class="language-python">from collections import defaultdict
+
+words = ['apple', 'apple', 'apple', 'banana', 'banana', 'cucumber']
+word_counts = defaultdict(int)
+
+for word in words:
+    word_counts[word] += 1
+
+print(word_counts)
+</code></pre>
+
+<pre><code>defaultdict(&lt;class 'int'&gt;, {'apple': 3, 'banana': 2, 'cucumber': 1})
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

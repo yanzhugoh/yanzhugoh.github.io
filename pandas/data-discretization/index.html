@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Data Discretization</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Data Discretization</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/data-discretization/">Data Discretization</a></h4>
+    <h5>February 25, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="data-discretization">Data Discretization</h3>
+
+<p>One method of scaling a continuous variable is by binning it. While in general this is not a good idea as we are losing information, it can be useful in instances where we expect a discontinuity in the response at certain points (eg: the legal age of driving).</p>
+
+<p>We will demonstrate how Pandas performs data discretization, followed by an example on how to perform custom discretization.</p>
+
+<h3 id="import-libraries">Import Libraries</h3>
+
+<pre><code class="language-python">import numpy as np
+import pandas as pd
+</code></pre>
+
+<h3 id="load-data">Load Data</h3>
+
+<pre><code class="language-python">scores = [10, 15, 20, 25, 30, 
+          60, 70, 80, 90, 100]
+</code></pre>
+
+<p>The inbuilt function in Pandas, <code>cut</code>, splits the dataset into ranges of equal sizes.</p>
+
+<p>In our example, if we wish to have 3 discrete buckets, the function will determine the ideal range for each bucket by equally dividing the distance between the smallest and largest values.</p>
+
+<pre><code class="language-python">labels = ['low', 'medium', 'high']
+pd.cut(scores, bins=3, right=False, labels=labels)
+</code></pre>
+
+<pre><code>[low, low, low, low, low, medium, high, high, high, high]
+Categories (3, object): [low &lt; medium &lt; high]
+</code></pre>
+
+<h3 id="custom-discretization">Custom Discretization</h3>
+
+<p>What if we do not want ranges of equal widths but instead wish to place values into pre-defined buckets? For instance, it is common to group ages in ranges of 10.</p>
+
+<p>This will have to be performed by a custom function, as there is no pre-defined function in Python to round a value to the nearest tens/hundreds/thousands.</p>
+
+<p>The trick is to make use of the <code>ceil</code> or <code>floor</code> function in Python&rsquo;s <code>math</code> module, which rounds up or down a float to its nearest integer.</p>
+
+<pre><code class="language-python">import math
+
+print('The floor of 1.2 is', math.floor(1.2))
+print('The ceiling of 1.2 is', math.ceil(1.2))
+</code></pre>
+
+<pre><code>The floor of 1.2 is 1
+The ceiling of 1.2 is 2
+</code></pre>
+
+<p>We will create the <code>floor_ages</code> function, which first divides each age by 10 to create a float. The float is then floored, and lastly we multiply each value by 10.</p>
+
+<pre><code class="language-python">ages = pd.DataFrame(data={'age': [18, 27, 35, 42, 50, 69, 70, 81, 93]})
+
+def floor_ages(age):
+    return math.floor(age / 10) * 10
+
+ages['age_floored'] = ages['age'].apply(floor_ages)
+print(ages)
+</code></pre>
+
+<pre><code>   age  age_floored
+0   18           10
+1   27           20
+2   35           30
+3   42           40
+4   50           50
+5   69           60
+6   70           70
+7   81           80
+8   93           90
+</code></pre>
+
+<p>We will create a dictionary that will map our <code>age_floored</code> values to our desired string representations.</p>
+
+<pre><code class="language-python">age_category_map = {10: '10 to 19', 20: '20 to 29', 30: '30 to 39', 
+                    40: '40 to 49', 50: '50 to 59', 60: '60 to 69', 
+                    70: '70 to 79', 80: '80 to 89', 90: '90 to 100'}
+ages['category'] = ages['age_floored'].map(age_category_map)
+print(ages.head())
+</code></pre>
+
+<pre><code>   age  age_floored  category
+0   18           10  10 to 19
+1   27           20  20 to 29
+2   35           30  30 to 39
+3   42           40  40 to 49
+4   50           50  50 to 59
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

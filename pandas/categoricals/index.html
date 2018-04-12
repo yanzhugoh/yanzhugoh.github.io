@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Categoricals</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Categoricals</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/categoricals/">Categoricals</a></h4>
+    <h5>February 27, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="categoricals">Categoricals</h3>
+
+<p>In addition to the standard Python datatypes (strings, integers, floats etc), a variable can be declared as a <em>categorical</em> in Pandas. <em>Categoricals</em> correspond to categorical values in statistics, and typically take on a limited, and usually fixed, number of values. If you have had more experience with R, <em>categoricals</em> are very similar to R&rsquo;s <a href="https://www.stat.berkeley.edu/classes/s133/factors.html">factors</a>.</p>
+
+<p>You should consider converting a variable to a Pandas <em>categorical</em> if:</p>
+
+<ul>
+<li>the variable is of string datatype, and limited to a fixed number of possible values. This can result in memory savings.</li>
+<li>its logical order is different from its lexical (alphabetical) order (eg: first, second and third)</li>
+<li>you wish to signal to other Python libraries that this variable is categorical.</li>
+</ul>
+
+<h3 id="import-libraries">Import Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+</code></pre>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Likert_scale">Likert scale</a> is a psychometric scale commonly used in research that employs questionnaires. In its string representation below, Pandas is unable to determine that there is a logical order to the values and therefore sorting is performed lexically.</p>
+
+<pre><code class="language-python">likert = ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'Strongly Disagree']
+responses = pd.Series(likert)
+
+responses = responses.sort_values()
+print(responses)
+</code></pre>
+
+<pre><code>1                Agree
+3             Disagree
+2              Neutral
+0       Strongly Agree
+4    Strongly Disagree
+dtype: object
+</code></pre>
+
+<p>It is easy to convert an existing column in a DataFrame to a <em>categorical</em>.</p>
+
+<h3 id="load-data">Load Data</h3>
+
+<p>We will demonstrate the use of <em>categoricals</em> using the following fictituous classroom results. Through some error, the students&rsquo; scores were lost but the teacher was able to vaguely remember that Amy performed better than Bary and Cory had the highest score.</p>
+
+<pre><code class="language-python">students = {'name': ['Amy', 'Bary', 'Cory'], 
+          'score': ['better', 'good', 'best']}
+
+students_df = pd.DataFrame(data=students)
+print(students_df)
+</code></pre>
+
+<pre><code>   name   score
+0   Amy  better
+1  Bary    good
+2  Cory    best
+</code></pre>
+
+<p>To enable Pandas to correctly sort the <code>score</code> column, we will need to convert it to a <code>category</code> using the <code>Categorical</code> class.</p>
+
+<pre><code class="language-python">score_type = pd.Categorical(values=students_df['score'], categories=['good', 'better', 'best'], ordered=True)
+students_df['score'] = students_df['score'].astype(score_type)
+students_df = students_df.sort_values(by='score')
+print(students_df)
+</code></pre>
+
+<pre><code>   name   score
+1  Bary    good
+0   Amy  better
+2  Cory    best
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

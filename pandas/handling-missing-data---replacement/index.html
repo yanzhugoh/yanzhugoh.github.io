@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Handling Missing Data - Replacement</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Handling Missing Data - Replacement</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/handling-missing-data---replacement/">Handling Missing Data - Replacement</a></h4>
+    <h5>February 13, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="handling-missing-data-replacement">Handling Missing Data - Replacement</h3>
+
+<p>Ideally, all data will be complete and without errors. In the real world, this cannot be further from the truth. Thankfully, Pandas comes with many methods that make addressing these issues easier. This is especially important as most machine learning algorithms are unable to handle missing data.</p>
+
+<p>There are in general, two ways to handle entries with missing data. We either fill the blanks with reasonable values, or remove the entire record from the dataset. This article will discuss how we can identify missing fields and fill them - you can refer to <em>link</em> if you are interested to learn about how to remove such entries.</p>
+
+<h3 id="import-libraries">Import Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+</code></pre>
+
+<h3 id="how-does-pandas-identify-missing-data">How Does Pandas Identify &ldquo;Missing&rdquo; Data</h3>
+
+<p>To understand how we can remove missing data, we need to first understand how Pandas determines that something is &ldquo;missing&rdquo;.</p>
+
+<p>The following is an exhaustive list of what Pandas considers as missing.</p>
+
+<ul>
+<li>The Python keyword <code>None</code></li>
+<li><code>np.nan</code></li>
+<li><code>pd.NaT</code> (Not a Date)</li>
+</ul>
+
+<h3 id="create-dataframe-with-missing-data">Create DataFrame with Missing Data</h3>
+
+<pre><code class="language-python">screening_data = {'name': ['Amy', 'Barry', 'Cory'], 
+                  'weight_kg': [60, np.nan, 70], 
+                  'height_m': [1.6, np.nan, np.nan]}
+
+screening_df = pd.DataFrame(screening_data)
+print(screening_df)
+</code></pre>
+
+<pre><code>   height_m   name  weight_kg
+0       1.6    Amy       60.0
+1       NaN  Barry        NaN
+2       NaN   Cory       70.0
+</code></pre>
+
+<p>If we wish to replace all blank values with a single value, simply pass it as a parameter to the <code>fillna</code> function.</p>
+
+<pre><code class="language-python">print(screening_df.fillna(50))
+</code></pre>
+
+<pre><code>   height_m   name  weight_kg
+0       1.6    Amy       60.0
+1      50.0  Barry       50.0
+2      50.0   Cory       70.0
+</code></pre>
+
+<p>If you want to fill blanks by the averages of each column, you can do the following.</p>
+
+<pre><code class="language-python">print(screening_df.fillna(screening_df.mean()))
+</code></pre>
+
+<pre><code>   height_m   name  weight_kg
+0       1.6    Amy       60.0
+1       1.6  Barry       65.0
+2       1.6   Cory       70.0
+</code></pre>
+
+<p>Another common way to fill missing values will be to determine the group that they belong to and use the means for that group.</p>
+
+<pre><code class="language-python">scores = {'gender': ['m', 'm', 'm', 'f', 'f', 'f'], 
+          'score': [1, 1, np.nan, 10, 10, np.nan]}
+
+scores_df = pd.DataFrame(scores)
+print(scores_df)
+</code></pre>
+
+<pre><code>  gender  score
+0      m    1.0
+1      m    1.0
+2      m    NaN
+3      f   10.0
+4      f   10.0
+5      f    NaN
+</code></pre>
+
+<p>If we believe that there is a distinct difference for test performance between males and females and that the mean test scores for each gender will be a good proxy for the missing values, we can utilise the following code snippet to accomplish this.</p>
+
+<pre><code class="language-python">fill_mean = lambda scores: scores.fillna(scores.mean())
+print(scores_df.groupby('gender')['score'].apply(fill_mean))
+</code></pre>
+
+<pre><code>0     1.0
+1     1.0
+2     1.0
+3    10.0
+4    10.0
+5    10.0
+Name: score, dtype: float64
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

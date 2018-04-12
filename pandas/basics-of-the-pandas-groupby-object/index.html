@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Basics of the Pandas GroupBy Object</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Basics of the Pandas GroupBy Object</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/basics-of-the-pandas-groupby-object/">Basics of the Pandas GroupBy Object</a></h4>
+    <h5>February 21, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="basics-of-the-pandas-groupby-object">Basics of the Pandas GroupBy Object</h3>
+
+<p>Before we can discuss how Pandas performs aggregations, we have to first understand the properties of the GroupBy object that is created when we call the <code>groupby</code> function.</p>
+
+<p>Graphically, the GroupBy object represents the objects listed in the &ldquo;Split&rdquo; step, before any functions are applied to the groups.</p>
+
+<p>&lt; TODO: include picture of split-apply-combine &gt;</p>
+
+<h3 id="import-libraries">Import Libraries</h3>
+
+<pre><code class="language-python">import numpy as np
+import pandas as pd
+import seaborn as sns # to retrieve the tips dataset
+</code></pre>
+
+<h3 id="import-data">Import Data</h3>
+
+<p>We will be exploring the GroupBy object using the &ldquo;tips&rdquo; dataset found in <code>seaborn</code>. The tips dataset contains information about how much people tipped, as well as their gender and whether they are smokers.</p>
+
+<pre><code class="language-python">tips = sns.load_dataset('tips')
+tips.head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_bill</th>
+      <th>tip</th>
+      <th>sex</th>
+      <th>smoker</th>
+      <th>day</th>
+      <th>time</th>
+      <th>size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16.99</td>
+      <td>1.01</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10.34</td>
+      <td>1.66</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21.01</td>
+      <td>3.50</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>23.68</td>
+      <td>3.31</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>24.59</td>
+      <td>3.61</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>When the <code>groupby</code> function is called, <strong>no splitting occurs</strong> until it is truly necessary. It only verifies that a valid mapping has been passed to the function.</p>
+
+<pre><code class="language-python">group_sex_smoker = tips.groupby(['sex', 'smoker'])
+print(group_sex_smoker)
+</code></pre>
+
+<pre><code>&lt;pandas.core.groupby.DataFrameGroupBy object at 0x0000025B92933DD8&gt;
+</code></pre>
+
+<p>We can iterate the GroupBy object and print the label for each group. If we want to, we can also access the data of each group, but we will not be doing that here.</p>
+
+<pre><code class="language-python">for group, data in group_sex_smoker:
+    print(group)
+</code></pre>
+
+<pre><code>('Male', 'Yes')
+('Male', 'No')
+('Female', 'Yes')
+('Female', 'No')
+</code></pre>
+
+<h3 id="optimised-aggregation-functions">Optimised Aggregation Functions</h3>
+
+<p>Common aggregations can be performed using in-built, optimised implementations. Custom aggregations are also possible if you create and pass a custom function.</p>
+
+<p><code>count</code> returns the number of records in each group.</p>
+
+<pre><code class="language-python">print(group_sex_smoker.count())
+</code></pre>
+
+<pre><code>               total_bill  tip  day  time  size
+sex    smoker                                  
+Male   Yes             60   60   60    60    60
+       No              97   97   97    97    97
+Female Yes             33   33   33    33    33
+       No              54   54   54    54    54
+</code></pre>
+
+<p><code>sum</code> adds the values of each column and returns the total. This will not be performed for non-numeric columns.</p>
+
+<pre><code class="language-python">print(group_sex_smoker.sum())
+</code></pre>
+
+<pre><code>               total_bill     tip  size
+sex    smoker                          
+Male   Yes        1337.07  183.07   150
+       No         1919.75  302.00   263
+Female Yes         593.27   96.74    74
+       No          977.68  149.77   140
+</code></pre>
+
+<p><code>mean</code> calculates the average of each column for each group. This will not be performed for non-numeric columns.</p>
+
+<pre><code class="language-python">print(group_sex_smoker.mean())
+</code></pre>
+
+<pre><code>               total_bill       tip      size
+sex    smoker                                
+Male   Yes      22.284500  3.051167  2.500000
+       No       19.791237  3.113402  2.711340
+Female Yes      17.977879  2.931515  2.242424
+       No       18.105185  2.773519  2.592593
+</code></pre>
+
+<p><code>median</code> returns the value at the 50th percentile of each group. This will not be performed for non-numeric columns.</p>
+
+<pre><code class="language-python">print(group_sex_smoker.median())
+</code></pre>
+
+<pre><code>               total_bill   tip  size
+sex    smoker                        
+Male   Yes          20.39  3.00     2
+       No           18.24  2.74     2
+Female Yes          16.27  2.88     2
+       No           16.69  2.68     2
+</code></pre>
+
+<p><code>min</code> and <code>max</code> returns the minimum/maximum value of each group. This will not be performed for non-numeric columns.</p>
+
+<pre><code class="language-python">print('Minimum values for each group.\n')
+print(group_sex_smoker.min())
+print('\n')
+print('Maximum values for each group.\n')
+print(group_sex_smoker.max())
+</code></pre>
+
+<pre><code>Minimum values for each group.
+
+               size   tip  total_bill
+sex    smoker                        
+Male   Yes        1  1.00        7.25
+       No         2  1.25        7.51
+Female Yes        1  1.00        3.07
+       No         1  1.00        7.25
+
+
+Maximum values for each group.
+
+               size   tip  total_bill
+sex    smoker                        
+Male   Yes        5  10.0       50.81
+       No         6   9.0       48.33
+Female Yes        4   6.5       44.30
+       No         6   5.2       35.83
+</code></pre>
+
+<p><code>prod</code> multiplies the values in each group and returns the result. This will not be performed for non-numeric values.</p>
+
+<pre><code class="language-python">print(group_sex_smoker.prod())
+</code></pre>
+
+<pre><code>                  total_bill           tip          size
+sex    smoker                                           
+Male   Yes      2.173399e+78  2.860617e+26  3.151799e+22
+       No      1.413952e+122  4.609979e+43  4.604192e+39
+Female Yes      4.250240e+39  1.400379e+14  1.304596e+11
+       No       1.458771e+66  9.340368e+21  4.986245e+20
+</code></pre>
+
+<p><code>first</code> returns, literally the first value of each group.</p>
+
+<pre><code class="language-python">print(group_sex_smoker.first())
+</code></pre>
+
+<pre><code>               total_bill   tip  day    time  size
+sex    smoker                                     
+Male   Yes          38.01  3.00  Sat  Dinner     4
+       No           10.34  1.66  Sun  Dinner     3
+Female Yes           3.07  1.00  Sat  Dinner     1
+       No           16.99  1.01  Sun  Dinner     2
+</code></pre>
+
+<h3 id="applying-multiple-functions">Applying Multiple Functions</h3>
+
+<p>In SQL, it is common that we perform multiple aggregation functions in a single query. For instance, it is common to run queries like the following, where the intention is to calculate the average tip per day, as well as retrieve the counts of each day in the dataset.</p>
+
+<pre><code>
+SELECT day, AVG(tip), COUNT(*) 
+FROM tips
+GROUP BY day;
+</code></pre>
+
+<p>This is addressed in Pandas using the <code>agg</code> function, where we can pass a dictionary of aggregation methods to the function which will then be applied onto the <code>DataFrameGroupBy</code> object.</p>
+
+<p>The following code snippet demonstrates how we can perform multiple aggregations on the DataFrame.</p>
+
+<pre><code class="language-python">group_by_day = tips.groupby('day').agg({'tip': np.mean, 'day': np.size})
+group_by_day = group_by_day.rename(columns={'tip': 'avg_tip', 'day': 'day_count'})
+print(group_by_day)
+</code></pre>
+
+<pre><code>       avg_tip  day_count
+day                      
+Thur  2.771452         62
+Fri   2.734737         19
+Sat   2.993103         87
+Sun   3.255132         76
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

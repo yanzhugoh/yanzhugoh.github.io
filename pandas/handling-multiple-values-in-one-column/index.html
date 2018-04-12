@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Handling Multiple Values in One Column</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Handling Multiple Values in One Column</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/handling-multiple-values-in-one-column/">Handling Multiple Values in One Column</a></h4>
+    <h5>February 15, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="handling-multiple-values-in-one-column">Handling Multiple Values in One Column</h3>
+
+<p>It is common to see multiple values stored in a single column, and this makes it challenging to analyse the data. This article discusses how we can split the values and appropriately assign them to rows that they are referencing.</p>
+
+<h3 id="load-libraries">Load Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+</code></pre>
+
+<h3 id="load-data">Load Data</h3>
+
+<p>The data for this exercise is adapted from a task in Udacity&rsquo;s <a href="https://www.udacity.com/course/data-analyst-nanodegree--nd002">Data Analyst Nanodegree</a>.</p>
+
+<pre><code class="language-python">data = [{'movie_id': 135397, 'original_title': 'Jurassic World', 
+         'genres': 'Action|Adventure|Science Fiction|Thriller'},
+        {'movie_id': 262500, 'original_title': 'Insurgent', 
+         'genres': 'Adventure|Science Fiction|Thriller'}]
+
+df = pd.DataFrame(data)
+df.head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>genres</th>
+      <th>movie_id</th>
+      <th>original_title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Action|Adventure|Science Fiction|Thriller</td>
+      <td>135397</td>
+      <td>Jurassic World</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adventure|Science Fiction|Thriller</td>
+      <td>262500</td>
+      <td>Insurgent</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>We first split the <code>genres</code> column to create a list of genre lists.</p>
+
+<pre><code class="language-python">genres = df.loc[:, ['movie_id', 'genres']]
+genres_list = genres['genres'].str.split('|').tolist()
+print(genres_list)
+</code></pre>
+
+<pre><code>[['Action', 'Adventure', 'Science Fiction', 'Thriller'], ['Adventure', 'Science Fiction', 'Thriller']]
+</code></pre>
+
+<p>We next create a stacked dataframe.</p>
+
+<pre><code class="language-python">stacked_genres_df = pd.DataFrame(genres_list, index=genres['movie_id']).stack()
+stacked_genres_df.head(7)
+</code></pre>
+
+<pre><code>movie_id   
+135397    0             Action
+          1          Adventure
+          2    Science Fiction
+          3           Thriller
+262500    0          Adventure
+          1    Science Fiction
+          2           Thriller
+dtype: object
+</code></pre>
+
+<p>Resetting the index has the nice effect of interpolating the <code>movie_id</code>.</p>
+
+<pre><code class="language-python">stacked_genres_df = stacked_genres_df.reset_index()
+stacked_genres_df.head(7)
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_id</th>
+      <th>level_1</th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>135397</td>
+      <td>0</td>
+      <td>Action</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>135397</td>
+      <td>1</td>
+      <td>Adventure</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>135397</td>
+      <td>2</td>
+      <td>Science Fiction</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>135397</td>
+      <td>3</td>
+      <td>Thriller</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>262500</td>
+      <td>0</td>
+      <td>Adventure</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>262500</td>
+      <td>1</td>
+      <td>Science Fiction</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>262500</td>
+      <td>2</td>
+      <td>Thriller</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Lastly, we remove the unnecessary columns and rename column <code>0</code> to <code>genre</code>.</p>
+
+<pre><code class="language-python">movie_genre_mapping = stacked_genres_df.loc[:, ['movie_id', 0]]
+movie_genre_mapping.columns = ['movie_id', 'genre']
+movie_genre_mapping.head(7)
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_id</th>
+      <th>genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>135397</td>
+      <td>Action</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>135397</td>
+      <td>Adventure</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>135397</td>
+      <td>Science Fiction</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>135397</td>
+      <td>Thriller</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>262500</td>
+      <td>Adventure</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>262500</td>
+      <td>Science Fiction</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>262500</td>
+      <td>Thriller</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

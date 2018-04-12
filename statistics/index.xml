@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Journey</title>
+    <link>https://yanzhugoh.github.io/statistics/</link>
+    <description>Recent content in Statistics on Journey</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yanzhugoh.github.io/statistics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Project 1</title>
+      <link>https://yanzhugoh.github.io/statistics/statistics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Two-Sample t-Test</title>
+      <link>https://yanzhugoh.github.io/statistics/two-sample-t-test/</link>
+      <pubDate>Fri, 23 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/two-sample-t-test/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>One-Sample t-Test</title>
+      <link>https://yanzhugoh.github.io/statistics/one-sample-t-test/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/one-sample-t-test/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Central Limit Theorem</title>
+      <link>https://yanzhugoh.github.io/statistics/central-limit-theorem/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/central-limit-theorem/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Descriptive vs. Inferential Statistics</title>
+      <link>https://yanzhugoh.github.io/statistics/descriptive-vs.-inferential-statistics/</link>
+      <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/statistics/descriptive-vs.-inferential-statistics/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

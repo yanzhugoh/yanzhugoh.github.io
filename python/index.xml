@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Journey</title>
+    <link>https://yanzhugoh.github.io/python/</link>
+    <description>Recent content in Python on Journey</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yanzhugoh.github.io/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Generators</title>
+      <link>https://yanzhugoh.github.io/python/generators/</link>
+      <pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/generators/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Exception Handling</title>
+      <link>https://yanzhugoh.github.io/python/exception-handling/</link>
+      <pubDate>Sun, 14 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/exception-handling/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Set Basics</title>
+      <link>https://yanzhugoh.github.io/python/set-basics/</link>
+      <pubDate>Fri, 12 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/set-basics/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dictionary Basics</title>
+      <link>https://yanzhugoh.github.io/python/dictionary-basics/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/dictionary-basics/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>List and String Slicing</title>
+      <link>https://yanzhugoh.github.io/python/list-and-string-slicing/</link>
+      <pubDate>Sat, 06 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/list-and-string-slicing/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>String Boolean Tests</title>
+      <link>https://yanzhugoh.github.io/python/string-boolean-tests/</link>
+      <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/string-boolean-tests/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>String Basics</title>
+      <link>https://yanzhugoh.github.io/python/string-basics/</link>
+      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/python/string-basics/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

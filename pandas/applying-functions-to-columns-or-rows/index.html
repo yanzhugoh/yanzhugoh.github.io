@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Applying Functions to Columns or Rows</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Applying Functions to Columns or Rows</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/pandas/applying-functions-to-columns-or-rows/">Applying Functions to Columns or Rows</a></h4>
+    <h5>February 9, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="applying-functions-to-columns-or-rows">Applying Functions to Columns or Rows</h3>
+
+<p>When tackling a machine learning problem, we will often discover that the features that we are provided with can often be combined to create new features to enhance the model. This process is formally known as <a href="https://en.wikipedia.org/wiki/Feature_engineering">feature engineering</a>, and Pandas comes with several in-built functions for this purpose.</p>
+
+<h3 id="load-libraries">Load Libraries</h3>
+
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+import seaborn as sns # to retrieve the titanic dataset
+</code></pre>
+
+<h3 id="load-data">Load Data</h3>
+
+<p>The titanic dataset contains information about the passengers aboard the ill-fated ship, along with whether they survived.</p>
+
+<pre><code class="language-python">titanic = sns.load_dataset('titanic')
+print(titanic.head(3))
+</code></pre>
+
+<pre><code>   survived  pclass     sex   age  sibsp  parch     fare embarked  class  \
+0         0       3    male  22.0      1      0   7.2500        S  Third   
+1         1       1  female  38.0      1      0  71.2833        C  First   
+2         1       3  female  26.0      0      0   7.9250        S  Third   
+
+     who  adult_male deck  embark_town alive  alone  
+0    man        True  NaN  Southampton    no  False  
+1  woman       False    C    Cherbourg   yes  False  
+2  woman       False  NaN  Southampton   yes   True  
+</code></pre>
+
+<h3 id="map">Map</h3>
+
+<p>The <code>map</code> function is used to, as you guessed it, map values given the input variables. A common use for this function is to change the values in a Series.</p>
+
+<p>We will demonstrate by recreating the <code>alive</code> column, which uses the <code>survived</code> column as its input.</p>
+
+<p>Based on the <code>groupby</code> below, we can tell the relationship between the two columns.</p>
+
+<pre><code class="language-python">print(list(titanic.groupby(['survived', 'alive']).groups))
+</code></pre>
+
+<pre><code>[(0, 'no'), (1, 'yes')]
+</code></pre>
+
+<pre><code class="language-python">alive_map = {0: 'no', 1: 'yes'}
+titanic = titanic.drop('alive', axis=1)
+print(titanic.head(3))
+</code></pre>
+
+<pre><code>   survived  pclass     sex   age  sibsp  parch     fare embarked  class  \
+0         0       3    male  22.0      1      0   7.2500        S  Third   
+1         1       1  female  38.0      1      0  71.2833        C  First   
+2         1       3  female  26.0      0      0   7.9250        S  Third   
+
+     who  adult_male deck  embark_town  alone  
+0    man        True  NaN  Southampton  False  
+1  woman       False    C    Cherbourg  False  
+2  woman       False  NaN  Southampton   True  
+</code></pre>
+
+<pre><code class="language-python">titanic['alive'] = titanic['survived'].map(alive_map)
+print(titanic[['survived', 'alive']].head(3))
+</code></pre>
+
+<pre><code>   survived alive
+0         0    no
+1         1   yes
+2         1   yes
+</code></pre>
+
+<h3 id="apply">Apply</h3>
+
+<p>A closely related function is <code>apply</code>- as the name suggests, it accepts an input function which is then applied to the row or column. We will demonstrate its functionality by recreating the <code>who</code> column.</p>
+
+<p>From the following <code>groupby</code> statement and observing the maximum age of a &lsquo;child&rsquo;, we can easily derive the logic used to create this column.</p>
+
+<pre><code class="language-python">print(list(titanic.groupby(['sex', 'who']).groups))
+</code></pre>
+
+<pre><code>[('female', 'child'), ('female', 'woman'), ('male', 'child'), ('male', 'man')]
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Sex</th>
+<th>Age</th>
+<th>&lsquo;Who&rsquo;</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>female</td>
+<td>&lt;=15</td>
+<td>child</td>
+</tr>
+
+<tr>
+<td>female</td>
+<td>&gt;15</td>
+<td>woman</td>
+</tr>
+
+<tr>
+<td>male</td>
+<td>&lt;=15</td>
+<td>child</td>
+</tr>
+
+<tr>
+<td>male</td>
+<td>&gt;15</td>
+<td>man</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-python">def generate_who(row):
+    if row['age'] &lt;= 15:
+        return 'child'
+    else:
+        if row['sex'] == 'male':
+            return 'man'
+        else:
+            return 'woman'
+
+titanic['who_recreated'] = titanic.apply(generate_who, axis=1)
+print(titanic[['who', 'who_recreated']].head(10))
+</code></pre>
+
+<pre><code>     who who_recreated
+0    man           man
+1  woman         woman
+2  woman         woman
+3  woman         woman
+4    man           man
+5    man           man
+6    man           man
+7  child         child
+8  woman         woman
+9  child         child
+</code></pre></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+
