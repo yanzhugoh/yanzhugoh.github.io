@@ -211,35 +211,42 @@
 
 <h3 id="cleaning-the-medallions">Cleaning the Medallions</h3>
 
-<p>From trips with negative fares, to ones that start in the Atlantic Ocean, it is clear that we have some data wramgling to do before we can get down to the analysis.</p>
+<p>From trips with negative fares, to ones that start in the Atlantic Ocean, it is clear that we have some data wramgling to do before we can get down to the analysis.
+<br><br></p>
 
 <h4 id="sanity-checks">Sanity Checks</h4>
 
 <p>We get an overview of the data through overall counts, followed by aggregating it by month as a rough overall check that there are no glaring issues with the dataset.</p>
 
-<p>I am happy to report that the trip counts across months for Boro and Medallion trips seem reasonable.</p>
+<p>I am happy to report that the trip counts across months for Boro and Medallion trips seem reasonable.
+<br><br></p>
 
 <h4 id="pickup-dropoff-locations">Pickup/Dropoff Locations</h4>
 
 <p>According to <a href="www.netstate.com/states/geography/ny_geography.htm">Netstate</a>, New York spans the longitude from -79.4554 to -71.4725 and a latitude of 40.2940 to 45.0042.</p>
 
-<p>We found 2.5 million Medallion trips and 47 thousand Boro trips that did not meet this criteria. It appears that the system defaults longitude and latitude to 0 when it is unavailable. There are also instances where the location logged does not fall within New York City.</p>
+<p>We found 2.5 million Medallion trips and 47 thousand Boro trips that did not meet this criteria. It appears that the system defaults longitude and latitude to 0 when it is unavailable. There are also instances where the location logged does not fall within New York City.
+<br><br></p>
 
 <h4 id="passenger-count">Passenger Count</h4>
 
-<p>This field is input by the driver. Based on the frequencies of each value, I think that it will be safe to conclude that values 0, 7, 8 and 9 are erroneous.</p>
+<p>This field is input by the driver. Based on the frequencies of each value, I think that it will be safe to conclude that values 0, 7, 8 and 9 are erroneous.
+<br><br></p>
 
 <h4 id="trip-distance">Trip Distance</h4>
 
-<p>Thankfully, we did not find any trips where the logged distance was negative. However we did find a significant number that logged 0 miles. These rows also seem to have issues with other fields, and therefore we will remove them.</p>
+<p>Thankfully, we did not find any trips where the logged distance was negative. However we did find a significant number that logged 0 miles. These rows also seem to have issues with other fields, and therefore we will remove them.
+<br><br></p>
 
 <h4 id="fare">Fare</h4>
 
-<p>According to the <a href="www.nyc.gov/html/passenger/taxicab_rate.shtml">NYC Taxi &amp; Limousine Commission</a>, the initial rate of a taxi ride is USD2.50. This implies that we should reject any rows that have recorded fares below this amount. This will remove 121,297 medallion trips and 95,211 Boro trips.</p>
+<p>According to the <a href="www.nyc.gov/html/passenger/taxicab_rate.shtml">NYC Taxi &amp; Limousine Commission</a>, the initial rate of a taxi ride is USD2.50. This implies that we should reject any rows that have recorded fares below this amount. This will remove 121,297 medallion trips and 95,211 Boro trips.
+<br><br></p>
 
 <h4 id="tip">Tip</h4>
 
-<p>Interestingly, we note several instances where the tip is negative. We will be removing these records.</p>
+<p>Interestingly, we note several instances where the tip is negative. We will be removing these records.
+<br><br></p>
 
 <h4 id="payment-type">Payment Type</h4>
 
