@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -147,11 +147,15 @@
 
 <p>If what you are intending to do cannot be accomplished through the standard groupby operations, Pandas also provides us with the option to apply a custom function to each group within a <code>DataFrameGroupBy</code> object.</p>
 
+<p><br></p>
+
 <h3 id="import-libraries">Import Libraries</h3>
 
 <pre><code class="language-python">import pandas as pd
 import seaborn as sns # to retrieve the tips dataset
 </code></pre>
+
+<p><br></p>
 
 <h3 id="load-data">Load Data</h3>
 
@@ -168,6 +172,8 @@ print(tips.head())
 3       23.68  3.31    Male     No  Sun  Dinner     2
 4       24.59  3.61  Female     No  Sun  Dinner     4
 </code></pre>
+
+<p><br></p>
 
 <h3 id="recap-applying-in-built-functions-to-groupby-objects">Recap - Applying In-built Functions to GroupBy Objects</h3>
 
@@ -190,6 +196,8 @@ Female  Yes       2.931515
         No        2.773519
 Name: tip, dtype: float64
 </code></pre>
+
+<p><br></p>
 
 <h3 id="applying-custom-functions">Applying Custom Functions</h3>
 

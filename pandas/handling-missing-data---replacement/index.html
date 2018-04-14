@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -147,11 +147,15 @@
 
 <p>There are in general, two ways to handle entries with missing data. We either fill the blanks with reasonable values, or remove the entire record from the dataset. This article will discuss how we can identify missing fields and fill them - you can refer to <em>link</em> if you are interested to learn about how to remove such entries.</p>
 
+<p><br></p>
+
 <h3 id="import-libraries">Import Libraries</h3>
 
 <pre><code class="language-python">import pandas as pd
 import numpy as np
 </code></pre>
+
+<p><br></p>
 
 <h3 id="how-does-pandas-identify-missing-data">How Does Pandas Identify &ldquo;Missing&rdquo; Data</h3>
 
@@ -164,6 +168,8 @@ import numpy as np
 <li><code>np.nan</code></li>
 <li><code>pd.NaT</code> (Not a Date)</li>
 </ul>
+
+<p><br></p>
 
 <h3 id="create-dataframe-with-missing-data">Create DataFrame with Missing Data</h3>
 
@@ -181,7 +187,8 @@ print(screening_df)
 2       NaN   Cory       70.0
 </code></pre>
 
-<p>If we wish to replace all blank values with a single value, simply pass it as a parameter to the <code>fillna</code> function.</p>
+<p><br>
+If we wish to replace all blank values with a single value, simply pass it as a parameter to the <code>fillna</code> function.</p>
 
 <pre><code class="language-python">print(screening_df.fillna(50))
 </code></pre>
@@ -192,7 +199,8 @@ print(screening_df)
 2      50.0   Cory       70.0
 </code></pre>
 
-<p>If you want to fill blanks by the averages of each column, you can do the following.</p>
+<p><br>
+If you want to fill blanks by the averages of each column, you can do the following.</p>
 
 <pre><code class="language-python">print(screening_df.fillna(screening_df.mean()))
 </code></pre>
@@ -203,7 +211,8 @@ print(screening_df)
 2       1.6   Cory       70.0
 </code></pre>
 
-<p>Another common way to fill missing values will be to determine the group that they belong to and use the means for that group.</p>
+<p><br>
+Another common way to fill missing values will be to determine the group that they belong to and use the means for that group.</p>
 
 <pre><code class="language-python">scores = {'gender': ['m', 'm', 'm', 'f', 'f', 'f'], 
           'score': [1, 1, np.nan, 10, 10, np.nan]}

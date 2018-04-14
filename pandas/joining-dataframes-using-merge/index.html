@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -143,12 +143,16 @@
 
 <h3 id="joining-dataframes-using-merge">Joining DataFrames Using Merge</h3>
 
-<p>If you are familiar with SQL have just started using Pandas, I am sure that you are hoping for a function that mimics the <code>JOIN</code> functions. Rest assured - you will not be disappointed.</p>
+<p>If you are familiar with SQL and just started using Pandas, I am sure that you are hoping for a function that mimics the <code>JOIN</code> functions. Rest assured - you will not be disappointed.</p>
+
+<p><br></p>
 
 <h3 id="import-libraries">Import Libraries</h3>
 
 <pre><code class="language-python">import pandas as pd
 </code></pre>
+
+<p><br></p>
 
 <h3 id="load-data">Load Data</h3>
 
@@ -184,7 +188,8 @@ print(flavors_df)
 3     Vanilla
 </code></pre>
 
-<p>To link the data from the people and flavors dataframes, we will create a DataFrame that matches <code>people_id</code> and <code>flavor_id</code>.</p>
+<p><br>
+To link the data from the people and flavors dataframes, we will create a DataFrame that matches <code>people_id</code> and <code>flavor_id</code>.</p>
 
 <pre><code class="language-python">people_flavor = {'people_id': [1, 1, 1, 2, 2, 3], 
                  'flavor_id': [1, 2, 3, 1, 2, 1]}
@@ -235,7 +240,8 @@ print(people_flavor_df)
 2          3          1    Amy     Vanilla
 </code></pre>
 
-<p>While our examples have been limited to inner joins, <code>merge</code> does allow us to specify the type of join using the <code>how</code> parameter.</p>
+<p><br>
+While our example has been limited to inner joins, <code>merge</code> does allow us to specify the type of join using the <code>how</code> parameter.</p>
 
 <ul>
 <li><code>left</code> uses only keys in the left DataFrame, similar to an SQL left outer join</li>

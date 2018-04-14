@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -153,12 +153,15 @@
 <li>you wish to signal to other Python libraries that this variable is categorical.</li>
 </ul>
 
+<p><br></p>
+
 <h3 id="import-libraries">Import Libraries</h3>
 
 <pre><code class="language-python">import pandas as pd
 </code></pre>
 
-<p>The <a href="https://en.wikipedia.org/wiki/Likert_scale">Likert scale</a> is a psychometric scale commonly used in research that employs questionnaires. In its string representation below, Pandas is unable to determine that there is a logical order to the values and therefore sorting is performed lexically.</p>
+<p><br>
+The <a href="https://en.wikipedia.org/wiki/Likert_scale">Likert scale</a> is a psychometric scale commonly used in research that employs questionnaires. In its string representation below, Pandas is unable to determine that there is a logical order to the values and therefore sorting is performed lexically.</p>
 
 <pre><code class="language-python">likert = ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'Strongly Disagree']
 responses = pd.Series(likert)
@@ -177,6 +180,8 @@ dtype: object
 
 <p>It is easy to convert an existing column in a DataFrame to a <em>categorical</em>.</p>
 
+<p><br></p>
+
 <h3 id="load-data">Load Data</h3>
 
 <p>We will demonstrate the use of <em>categoricals</em> using the following fictituous classroom results. Through some error, the students&rsquo; scores were lost but the teacher was able to vaguely remember that Amy performed better than Bary and Cory had the highest score.</p>
@@ -194,7 +199,8 @@ print(students_df)
 2  Cory    best
 </code></pre>
 
-<p>To enable Pandas to correctly sort the <code>score</code> column, we will need to convert it to a <code>category</code> using the <code>Categorical</code> class.</p>
+<p><br>
+To enable Pandas to correctly sort the <code>score</code> column, we will need to convert it to a <code>category</code> using the <code>Categorical</code> class.</p>
 
 <pre><code class="language-python">score_type = pd.Categorical(values=students_df['score'], categories=['good', 'better', 'best'], ordered=True)
 students_df['score'] = students_df['score'].astype(score_type)

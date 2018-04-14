@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -145,37 +145,51 @@
 
 <p>A two-sample t-test takes sample data from two groups and summarises it as a single t-value. The process is very similar to a one-sample t-test, with the exception that a two-sample t-test requires independent groups for each sample.</p>
 
+<p><br></p>
+
 <h3 id="formula">Formula</h3>
 
 <p>As a two-sample t-test needs to account for 2 samples, there is a slight difference in the denominator of the formula vs. that of the one-sample t-test.</p>
 
 <p>If both samples have the same sample variance,</p>
 
-<p><center>$\begin{align}t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s^2 (\frac{1}{n_1} + \frac{1}{n_2})}}\end{align}$</center></p>
+<p><center>\begin{align}t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s^2 (\frac{1}{n_1} + \frac{1}{n_2})}}\end{align}</center></p>
 
 <p>In the more likely event that the two samples have differing sample variance, use the following.</p>
 
-<p><center>$\begin{align}t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}\end{align}$</center></p>
+<p><center>\begin{align}t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}\end{align}</center></p>
+
+<p><br></p>
 
 <h3 id="example">Example</h3>
 
 <p>We want to test if drinking milk prior to taking an exam will improve test scores. Two groups are chosen at random, and one group is made to drink milk while the other serves as the control. Assuming that our data constitutes a random sample from a normal distribution, determine the liklihood that drinking milk prior to an exam improves test scores.</p>
 
-<p>Group that drank milk
-- Number of students: 13
-- Average test score: 20
-- Sample variance: 2</p>
+<p>Group that drank milk</p>
 
-<p>Group that did not drink milk
-- Number of students: 15
-- Average test score: 18
-- Sample variance: 3</p>
+<ul>
+<li>Number of students: 13</li>
+<li>Average test score: 20</li>
+<li>Sample variance: 2</li>
+</ul>
+
+<p>Group that did not drink milk</p>
+
+<ul>
+<li>Number of students: 15</li>
+<li>Average test score: 18</li>
+<li>Sample variance: 3</li>
+</ul>
+
+<p><br></p>
 
 <h3 id="determine-the-t-value">Determine the t-Value</h3>
 
-<p>$\begin{align}t &amp;= \frac{20 - 18}{\sqrt{\frac{2}{13} + \frac{3}{15}}} <br />
-&amp;\approx3.36
-\end{align}$</p>
+<p>\begin{align}t &amp; = \frac{20 - 18}{\sqrt{\frac{2}{13} + \frac{3}{15}}} \<br />
+ &amp; \approx 3.36
+\end{align}</p>
+
+<p><br></p>
 
 <h3 id="evaluate-the-t-value">Evaluate the t-Value</h3>
 

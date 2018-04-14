@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -145,12 +145,16 @@
 
 <p>When tackling a machine learning problem, we will often discover that the features that we are provided with can often be combined to create new features to enhance the model. This process is formally known as <a href="https://en.wikipedia.org/wiki/Feature_engineering">feature engineering</a>, and Pandas comes with several in-built functions for this purpose.</p>
 
+<p><br></p>
+
 <h3 id="load-libraries">Load Libraries</h3>
 
 <pre><code class="language-python">import pandas as pd
 import numpy as np
 import seaborn as sns # to retrieve the titanic dataset
 </code></pre>
+
+<p><br></p>
 
 <h3 id="load-data">Load Data</h3>
 
@@ -170,6 +174,8 @@ print(titanic.head(3))
 1  woman       False    C    Cherbourg   yes  False  
 2  woman       False  NaN  Southampton   yes   True  
 </code></pre>
+
+<p><br></p>
 
 <h3 id="map">Map</h3>
 
@@ -210,6 +216,8 @@ print(titanic[['survived', 'alive']].head(3))
 1         1   yes
 2         1   yes
 </code></pre>
+
+<p><br></p>
 
 <h3 id="apply">Apply</h3>
 

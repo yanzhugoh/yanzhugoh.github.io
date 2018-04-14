@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -145,11 +145,15 @@
 
 <p>Being able to select and filter data easily is probably the most important feature in Pandas. We begin by demonstrating how this works for Series objects, followed by DataFrames.</p>
 
+<p><br></p>
+
 <h3 id="import-libraries">Import Libraries</h3>
 
 <pre><code class="language-python">import pandas as pd
 import seaborn as sns # to retrieve the titanic dataset
 </code></pre>
+
+<p><br></p>
 
 <h3 id="load-data">Load Data</h3>
 
@@ -169,6 +173,8 @@ dtype: object
 
 <p>Data in Pandas can be assessed either by <em>label</em>, or by <em>integer (row/column numbers)</em>.</p>
 
+<p><br></p>
+
 <h3 id="selection-by-integer">Selection by Integer</h3>
 
 <p>The <code>iloc</code> operator allows us to select the <em>values</em> by integer (row or column numbers).</p>
@@ -179,7 +185,8 @@ dtype: object
 <pre><code>chocolate
 </code></pre>
 
-<p><code>Series</code> objects also allow for Python indexing and slicing.</p>
+<p><br>
+<code>Series</code> objects also allow for Python indexing and slicing.</p>
 
 <pre><code class="language-python">print(preferences[0])
 </code></pre>
@@ -194,6 +201,8 @@ dtype: object
 Berry      vanilla
 dtype: object
 </code></pre>
+
+<p><br></p>
 
 <h3 id="selection-by-label">Selection by Label</h3>
 
@@ -213,6 +222,8 @@ Berry      vanilla
 dtype: object
 </code></pre>
 
+<p><br></p>
+
 <h3 id="series-filtering">Series Filtering</h3>
 
 <p>There are multiple ways that we can filter data in a Series.</p>
@@ -226,7 +237,8 @@ dtype: object
 dtype: object
 </code></pre>
 
-<p>Boolean operators (such as <code>&amp;</code> and <code>|</code>) can also be used.</p>
+<p><br>
+Boolean operators (such as <code>&amp;</code> and <code>|</code>) can also be used.</p>
 
 <pre><code class="language-python">preferences[(preferences=='chocolate') | (preferences=='vanilla')]
 </code></pre>
@@ -237,7 +249,8 @@ Dewy       vanilla
 dtype: object
 </code></pre>
 
-<p>The <code>filter</code> function also allows us to select via the labels.</p>
+<p><br>
+The <code>filter</code> function also allows us to select via the labels.</p>
 
 <pre><code class="language-python">preferences.filter(items=['Amy'])
 </code></pre>
@@ -246,9 +259,13 @@ dtype: object
 dtype: object
 </code></pre>
 
+<p><br></p>
+
 <h3 id="dataframe-selection-and-filtering">DataFrame Selection and Filtering</h3>
 
 <p>There are strong parallels between how selection and filtering is performed for Series and DataFrames, and expectedly it is slightly more involved for DataFrames due to their 2d nature.</p>
+
+<p><br></p>
 
 <h3 id="load-dataframe-data">Load DataFrame Data</h3>
 
@@ -270,6 +287,8 @@ print(titanic.head())
 3  woman       False    C  Southampton   yes  False  
 4    man        True  NaN  Southampton    no   True  
 </code></pre>
+
+<p><br></p>
 
 <h3 id="dataframe-selection">DataFrame Selection</h3>
 
@@ -297,10 +316,10 @@ Name: sex, dtype: object
 4         0    male
 </code></pre>
 
-<p>You can also select columns using the <code>loc</code> function. For a DataFrame, the first parameter of <code>loc</code> references the rows, while the second references the columns.</p>
+<p><br>
+You can also select columns using the <code>loc</code> function. For a DataFrame, the first parameter of <code>loc</code> references the rows, while the second references the columns.</p>
 
 <pre><code class="language-python"># retrieve all rows
-
 print(titanic.loc[:, ['survived', 'sex']].head())
 </code></pre>
 
@@ -313,7 +332,6 @@ print(titanic.loc[:, ['survived', 'sex']].head())
 </code></pre>
 
 <pre><code class="language-python"># retrieve only the first 2 rows
-
 print(titanic.loc[0:2, ['survived', 'sex']])
 </code></pre>
 
@@ -322,6 +340,8 @@ print(titanic.loc[0:2, ['survived', 'sex']])
 1         1  female
 2         1  female
 </code></pre>
+
+<p><br></p>
 
 <h3 id="dataframe-filtering">DataFrame Filtering</h3>
 
@@ -337,7 +357,8 @@ print(titanic.loc[0:2, ['survived', 'sex']])
 0        True  NaN  Southampton    no  False  
 </code></pre>
 
-<p>You can also access columns using <code>.</code> if you do not wish to use the square brackets.</p>
+<p><br>
+You can also access columns using <code>.</code> if you do not wish to use the square brackets.</p>
 
 <pre><code class="language-python">print(titanic[titanic.sex=='male'].head(1))
 </code></pre>
@@ -349,19 +370,10 @@ print(titanic.loc[0:2, ['survived', 'sex']])
 0        True  NaN  Southampton    no  False  
 </code></pre>
 
-<p>You can filter on multiple criteria by chaining them with boolean operators.</p>
+<p><br>
+You can filter on multiple criteria by chaining them with boolean operators.</p>
 
 <pre><code class="language-python">print(titanic[(titanic['sex']=='male') &amp; (titanic['pclass']==3)].head(1))
-</code></pre>
-
-<pre><code>   survived  pclass   sex   age  sibsp  parch  fare embarked  class  who  \
-0         0       3  male  22.0      1      0  7.25        S  Third  man   
-
-   adult_male deck  embark_town alive  alone  
-0        True  NaN  Southampton    no  False  
-</code></pre>
-
-<pre><code class="language-python">print(titanic[(titanic.sex=='male') &amp; (titanic.pclass==3)].head(1))
 </code></pre>
 
 <pre><code>   survived  pclass   sex   age  sibsp  parch  fare embarked  class  who  \

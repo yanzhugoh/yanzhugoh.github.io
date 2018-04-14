@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -150,7 +150,8 @@
 <pre><code class="language-python">import numpy as np
 </code></pre>
 
-<p>If you have a list that you do not wish to change the ordering (or unable to as the data is immutable, such as a DataFrame&rsquo;s index), but would want to generate a randomised version of it, you can utilise the <code>permutation</code> function.</p>
+<p><br>
+If you have a list that you do not wish to change the ordering (or unable to as the data is immutable, such as a DataFrame&rsquo;s index), but would want to generate a randomised version of it, you can utilise the <code>permutation</code> function.</p>
 
 <pre><code class="language-python">numbers = [1, 2, 3, 4, 5, 6, 7, 8]
 print(np.random.permutation(numbers))
@@ -159,7 +160,8 @@ print(np.random.permutation(numbers))
 <pre><code>[3 1 4 7 8 5 2 6]
 </code></pre>
 
-<p>The <code>shuffle</code> function has the same functionality as <code>permutation</code>, except that it will be performed inplace.</p>
+<p><br>
+The <code>shuffle</code> function has the same functionality as <code>permutation</code>, except that it will be performed inplace.</p>
 
 <pre><code class="language-python">print('The original list: ' + str(numbers))
 np.random.shuffle(numbers)

@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -153,10 +153,15 @@
 
 <p>This article will touch on <strong>bivariate</strong> analysis.</p>
 
-<p>Exhaustively, there are three possible combinations for the variables. Each combination will be addressed in its specific section below.
-1. Both variables are categorical.
-2. One variable is numeric, the other categorical.
-3. Both variables are numeric.</p>
+<p>Exhaustively, there are three possible combinations for the variables. Each combination will be addressed in its specific section below.</p>
+
+<ol>
+<li>Both variables are categorical.</li>
+<li>One variable is numeric, the other categorical.</li>
+<li>Both variables are numeric.</li>
+</ol>
+
+<p><br></p>
 
 <h3 id="import-libraries">Import Libraries</h3>
 
@@ -168,11 +173,15 @@ import seaborn as sns
 %matplotlib inline
 </code></pre>
 
+<p><br></p>
+
 <h3 id="set-seaborn-visualisation-options">Set Seaborn Visualisation Options</h3>
 
 <pre><code class="language-python">sns.set_style('whitegrid')
 sns.set_palette('Set3')
 </code></pre>
+
+<p><br></p>
 
 <h3 id="load-dataset">Load Dataset</h3>
 
@@ -190,6 +199,8 @@ print(tips.head())
 4       24.59  3.61  Female     No  Sun  Dinner     4
 </code></pre>
 
+<p><br></p>
+
 <h3 id="both-variables-are-categorical">Both Variables Are Categorical</h3>
 
 <p>This is best handled using a <em>frequency table</em>, post performing a groupby on both variables.</p>
@@ -206,6 +217,8 @@ Female  Yes       33
 dtype: int64
 </code></pre>
 
+<p><br></p>
+
 <h3 id="one-variable-is-numeric-the-other-categorical">One Variable is Numeric, the Other Categorical</h3>
 
 <p>For this combination, we want to understand the central tendency and dispersion of the numerical variable, split by the categorical variable.</p>
@@ -219,6 +232,8 @@ sns.despine()
 </code></pre>
 
 <p><img src="output_11_0.png" alt="png" /></p>
+
+<p><br></p>
 
 <h3 id="both-variables-are-numeric">Both Variables Are Numeric</h3>
 
