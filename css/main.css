@@ -115,5 +115,23 @@ table td, table th {
 }
 
 th {
-  font-weight:bold;
+  font-family: Lato;
+  font-size: 14px;
+  color: #4272d7;
+  line-height: 1.4;
+
+  background-color: transparent;
+  border-bottom: 2px solid #f2f2f2;
+}
+
+tr {
+	border-bottom: 1px solid #f2f2f2;
+}
+
+tr:nth-child(even) {
+	background-color: #f8f6ff;
+}
+
+tr:hover {
+	background-color: #F4ECF7;
 }
