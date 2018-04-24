@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Database Joins</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Lato', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Database Joins</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/sql/">SQL</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/sql/database-joins/">Database Joins</a></h4>
+    <h5>March 31, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="database-joins">Database Joins</h3>
+
+<p>If you are new to the world of relational databases, I will encourage that you spend time truly understanding how the various joins work. I believe that this is the key foundation skill that will enable you to explore and make sense of the data stored in the database.</p>
+
+<p>There are four types of joins:</p>
+
+<ul>
+<li>inner join</li>
+<li>left (outer) join</li>
+<li>right (outer) join</li>
+<li>cross join (cartesian product)</li>
+</ul>
+
+<p>While you will often see database joins being depicted as venn diagrams, do note that this is not how they work under the hood. I will readily admit though, that venn diagrams do serve as a good approximation to the underlying process, and it is likely far easier for a beginner to understand. When you feel relatively confident about your understanding of joins, I strongly suggest that you read this <a href="https://blog.jooq.org/2016/07/05/say-no-to-venn-diagrams-when-explaining-joins/">blog post</a> by JOOQ.</p>
+
+<p><br></p>
+
+<h3 id="the-employees-table">The Employees Table</h3>
+
+<pre><code>
+SELECT
+   employeeNumber,
+   firstName,
+   lastName,
+   jobTitle,
+   reportsTo 
+FROM
+   employees 
+WHERE
+   employeeNumber IN 
+   (
+      1002,
+      1056,
+      1076,
+      1088,
+      1102
+   )
+;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>employeeNumber</th>
+<th>firstName</th>
+<th>lastName</th>
+<th>jobTitle</th>
+<th>reportsTo</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+<td>NULL</td>
+</tr>
+
+<tr>
+<td>1056</td>
+<td>Mary</td>
+<td>Patterson</td>
+<td>VP Sales</td>
+<td>1002</td>
+</tr>
+
+<tr>
+<td>1076</td>
+<td>Jeff</td>
+<td>Firrelli</td>
+<td>VP Marketing</td>
+<td>1002</td>
+</tr>
+
+<tr>
+<td>1088</td>
+<td>William</td>
+<td>Patterson</td>
+<td>Sales Manager (APAC)</td>
+<td>1056</td>
+</tr>
+
+<tr>
+<td>1102</td>
+<td>Gerard</td>
+<td>Bondur</td>
+<td>Sale Manager (EMEA)</td>
+<td>1056</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <code>employees</code> table contains information about each employee&rsquo;s unique id, their first and last name, job title and also if they report to another employee. Here, we can see that Diane Murphy does not report to any employee.</p>
+
+<p>For brevity, we will be working with a subset of this data for this article.</p>
+
+<p><br></p>
+
+<h3 id="inner-join">Inner Join</h3>
+
+<p>Inner joins are performed by identifying matches between the values in a table&rsquo;s column with the values of another table&rsquo;s column. The query returns results only when there is a match.</p>
+
+<p>We will demonstrate inner joins by querying the employees table to display the first and last name of an employee, their job title and the first and last name of the employee that they report to.</p>
+
+<pre><code>
+SELECT
+   e.firstName,
+   e.lastName,
+   e.jobTitle,
+   rep.firstName AS 'reportingFirstName',
+   rep.lastName AS 'reportingLastName' 
+FROM
+   employees e 
+   INNER JOIN
+      employees rep 
+      ON e.reportsTo = rep.employeeNumber 
+      AND e.employeeNumber IN 
+      (
+         1002,
+         1056,
+         1076,
+         1088,
+         1102
+      )
+;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>firstName</th>
+<th>lastName</th>
+<th>jobTitle</th>
+<th>reportingFirstName</th>
+<th>reportingLastName</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Mary</td>
+<td>Patterson</td>
+<td>VP Sales</td>
+<td>Diane</td>
+<td>Murphy</td>
+</tr>
+
+<tr>
+<td>Jeff</td>
+<td>Firrelli</td>
+<td>VP Marketing</td>
+<td>Diane</td>
+<td>Murphy</td>
+</tr>
+
+<tr>
+<td>William</td>
+<td>Patterson</td>
+<td>Sales Manager (APAC)</td>
+<td>Mary</td>
+<td>Patterson</td>
+</tr>
+
+<tr>
+<td>Gerard</td>
+<td>Bondur</td>
+<td>Sale Manager (EMEA)</td>
+<td>Mary</td>
+<td>Patterson</td>
+</tr>
+</tbody>
+</table>
+
+<p>You will notice that Diane does not show up in the results. That is because she reports to NULL (nobody, in human speak), and therefore the inner join will neither find a match nor will she show up in the final result set.</p>
+
+<p><br></p>
+
+<h3 id="left-join">Left Join</h3>
+
+<p>A left join returns all rows in the first table listed in the query, regardless of whether it finds a match in table that it is being joined with.</p>
+
+<pre><code>
+SELECT
+   e.firstName,
+   e.lastName,
+   e.jobTitle,
+   rep.firstName AS 'reportingFirstName',
+   rep.lastName AS 'reportingLastName' 
+FROM
+   employees e 
+   LEFT JOIN
+      employees rep 
+      ON e.reportsTo = rep.employeeNumber 
+WHERE
+   e.employeeNumber IN 
+   (
+      1002,
+      1056,
+      1076,
+      1088,
+      1102
+   )
+;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>firstName</th>
+<th>lastName</th>
+<th>jobTitle</th>
+<th>reportingFirstName</th>
+<th>reportingLastName</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+<td>NULL</td>
+<td>NULL</td>
+</tr>
+
+<tr>
+<td>Mary</td>
+<td>Patterson</td>
+<td>VP Sales</td>
+<td>Diane</td>
+<td>Murphy</td>
+</tr>
+
+<tr>
+<td>Jeff</td>
+<td>Firrelli</td>
+<td>VP Marketing</td>
+<td>Diane</td>
+<td>Murphy</td>
+</tr>
+
+<tr>
+<td>William</td>
+<td>Patterson</td>
+<td>Sales Manager (APAC)</td>
+<td>Mary</td>
+<td>Patterson</td>
+</tr>
+
+<tr>
+<td>Gerard</td>
+<td>Bondur</td>
+<td>Sale Manager (EMEA)</td>
+<td>Mary</td>
+<td>Patterson</td>
+</tr>
+</tbody>
+</table>
+
+<p>Contrast this result set to the inner join one, we will notice that Diane does show up in this result set. That is because a left join retains all the rows in the first table of the query.</p>
+
+<p><br></p>
+
+<h3 id="right-join">Right Join</h3>
+
+<p>To demonstrate right joins, we will be removing the <code>WHERE</code> clause and we will display a truncated result set.</p>
+
+<pre><code>
+SELECT
+   e.firstName,
+   e.lastName,
+   e.jobTitle,
+   rep.firstName AS 'reportingFirstName',
+   rep.lastName AS 'reportingLastName' 
+FROM
+   employees e 
+   RIGHT JOIN
+      employees rep 
+      ON e.reportsTo = rep.employeeNumber;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>firstName</th>
+<th>lastName</th>
+<th>jobTitle</th>
+<th>reportingFirstName</th>
+<th>reportingLastName</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Mary</td>
+<td>Patterson</td>
+<td>VP Sales</td>
+<td>Diane</td>
+<td>Murphy</td>
+</tr>
+
+<tr>
+<td>Jeff</td>
+<td>Firrelli</td>
+<td>VP Marketing</td>
+<td>Diane</td>
+<td>Murphy</td>
+</tr>
+
+<tr>
+<td>William</td>
+<td>Patterson</td>
+<td>Sales Manager (APAC)</td>
+<td>Mary</td>
+<td>Patterson</td>
+</tr>
+
+<tr>
+<td>Gerard</td>
+<td>Bondur</td>
+<td>Sale Manager (EMEA)</td>
+<td>Mary</td>
+<td>Patterson</td>
+</tr>
+
+<tr>
+<td>Anthony</td>
+<td>Bow</td>
+<td>Sales Manager (NA)</td>
+<td>Mary</td>
+<td>Patterson</td>
+</tr>
+
+<tr>
+<td>NULL</td>
+<td>NULL</td>
+<td>NULL</td>
+<td>Jeff</td>
+<td>Firrelli</td>
+</tr>
+</tbody>
+</table>
+
+<p>I will like to bring your attention to Jeff Firrelli. You will notice that for his entry, there are no values in the firstName, lastName and jobTitle columns. This implies that nobody within the firm reports to him.</p>
+
+<pre><code>
+SELECT
+   COUNT(*) 
+FROM
+   employees 
+WHERE
+   reportsTo IN 
+   (
+      SELECT
+         employeeNumber 
+      FROM
+         employees 
+      WHERE
+         firstName = 'Jeff' 
+         AND lastName = 'Firrelli'
+   )
+;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>COUNT(*)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h3 id="cross-join-cartesian-product">Cross Join (Cartesian Product)</h3>
+
+<p>A cross join (also known as a cartesian product) matches each row of a table to all rows of another table. If a table has 3 rows, and is joined to another table with 3 rows, we expect a result set of 9 rows.</p>
+
+<pre><code>
+SELECT 
+    COUNT(*)
+FROM
+    employees;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>COUNT(*)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>23</td>
+</tr>
+</tbody>
+</table>
+
+<p>There are 23 records in the employees table.</p>
+
+<pre><code>
+SELECT 
+    COUNT(*) 
+FROM
+    employees e
+        CROSS JOIN
+    employees em;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>COUNT(*)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>529</td>
+</tr>
+</tbody>
+</table>
+
+<p>Performing a cross join of the employee table against itself creates a result set with 529 records (23 * 23).</p>
+
+<pre><code>
+SELECT
+   e.employeeNumber,
+   e.firstName,
+   e.lastName,
+   e.jobTitle,
+   em.employeeNumber,
+   em.firstName,
+   em.lastName,
+   em.jobTitle 
+FROM
+   employees e 
+   CROSS JOIN
+      employees em;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>employeeNumber</th>
+<th>firstName</th>
+<th>lastName</th>
+<th>jobTitle</th>
+<th>employeeNumber</th>
+<th>firstName</th>
+<th>lastName</th>
+<th>jobTitle</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1056</td>
+<td>Mary</td>
+<td>Patterson</td>
+<td>VP Sales</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1076</td>
+<td>Jeff</td>
+<td>Firrelli</td>
+<td>VP Marketing</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1088</td>
+<td>William</td>
+<td>Patterson</td>
+<td>Sales Manager (APAC)</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1102</td>
+<td>Gerard</td>
+<td>Bondur</td>
+<td>Sale Manager (EMEA)</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1143</td>
+<td>Anthony</td>
+<td>Bow</td>
+<td>Sales Manager (NA)</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1165</td>
+<td>Leslie</td>
+<td>Jennings</td>
+<td>Sales Rep</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1166</td>
+<td>Leslie</td>
+<td>Thompson</td>
+<td>Sales Rep</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1188</td>
+<td>Julie</td>
+<td>Firrelli</td>
+<td>Sales Rep</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+
+<tr>
+<td>1216</td>
+<td>Steve</td>
+<td>Patterson</td>
+<td>Sales Rep</td>
+<td>1002</td>
+<td>Diane</td>
+<td>Murphy</td>
+<td>President</td>
+</tr>
+</tbody>
+</table>
+
+<p>Here, you can see that Diane&rsquo;s record is repeated for each row in the first table.</p>
+
+<p><br></p>
+
+<h3 id="self-join">Self Join</h3>
+
+<p>A self join is used to describe instances where a table is joined with itself. A common use case is demonstrated in the examples above, where a column in the table holds a reference to the id of an object within the same table.</p>
+
+<p>The key point to note for self joins is that we need to provide aliases for the tables. This removes any form of ambiguity for the SQL interpreter.</p></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

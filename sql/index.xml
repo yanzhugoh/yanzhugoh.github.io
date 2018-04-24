@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sql on Journey</title>
+    <link>https://yanzhugoh.github.io/sql/</link>
+    <description>Recent content in Sql on Journey</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yanzhugoh.github.io/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Concatenate</title>
+      <link>https://yanzhugoh.github.io/sql/concatenate/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/sql/concatenate/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Running Count</title>
+      <link>https://yanzhugoh.github.io/sql/running-count/</link>
+      <pubDate>Wed, 04 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/sql/running-count/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Filtering Aggregate Results</title>
+      <link>https://yanzhugoh.github.io/sql/filtering-aggregate-results/</link>
+      <pubDate>Tue, 03 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/sql/filtering-aggregate-results/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Aggregate Functions</title>
+      <link>https://yanzhugoh.github.io/sql/aggregate-functions/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/sql/aggregate-functions/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generating Derived Fields</title>
+      <link>https://yanzhugoh.github.io/sql/generating-derived-fields/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/sql/generating-derived-fields/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Moving Average</title>
+      <link>https://yanzhugoh.github.io/sql/moving-average/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/sql/moving-average/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Database Joins</title>
+      <link>https://yanzhugoh.github.io/sql/database-joins/</link>
+      <pubDate>Sat, 31 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yanzhugoh.github.io/sql/database-joins/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

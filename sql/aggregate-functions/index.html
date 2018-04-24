@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Aggregate Functions</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Lato', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: red;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.35" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Aggregate Functions</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/statistics/">Statistics</a></li>
+                            
+                                <li><a href="/sql/">SQL</a></li>
+                            
+                                <li><a href="/python/">Python</a></li>
+                            
+                                <li><a href="/numpy/">NumPy</a></li>
+                            
+                                <li><a href="/pandas/">Pandas</a></li>
+                            
+                                <li><a href="/projects/">Projects</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:yanzhu.goh@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/yanzhugoh/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/yanzhugoh/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/sql/aggregate-functions/">Aggregate Functions</a></h4>
+    <h5>April 1, 2018</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify"><p></p>
+
+<h3 id="aggregate-functions">Aggregate Functions</h3>
+
+<p>SQL comes with aggregate functions that can help to summarise and generate descriptive statistics for a dataset.</p>
+
+<p>To demonstrate these functions, we will be using the <code>classicmodels</code> database, which you can download from <a href="http://www.mysqltutorial.org/mysql-sample-database.aspx">mysqltutorial</a>.</p>
+
+<p><br></p>
+
+<h3 id="min">MIN</h3>
+
+<p><code>MIN</code> returns the minimum value of a column.</p>
+
+<pre><code>
+SELECT
+   MIN(buyPrice) 
+FROM
+   products;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>MIN(buyPrice)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>15.91</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h3 id="max">MAX</h3>
+
+<p><code>MAX</code> returns the maximum value of a column.</p>
+
+<pre><code>
+SELECT
+   MAX(buyPrice) 
+FROM
+   products;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>MAX(buyPrice)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>103.42</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h3 id="sum">SUM</h3>
+
+<p><code>SUM</code> returns the sum of values in a column.</p>
+
+<pre><code>
+SELECT
+   SUM(buyPrice) 
+FROM
+   products;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>SUM(buyPrice)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>5983.47</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>COUNT</code> and <code>AVG</code> are a little more involved as they ignore <code>NULL</code> values. To demonstrate this, we first alter the table so that <code>buyPrice</code> can be nullable and we insert an entry with a <code>NULL</code> <code>buyPrice</code>.</p>
+
+<pre><code>
+ALTER TABLE `classicmodels`.`products` CHANGE COLUMN `buyPrice` `buyPrice` DECIMAL(10, 2) NULL, CHANGE COLUMN `MSRP` `MSRP` DECIMAL(10, 2) NULL;
+</code></pre>
+
+<pre><code>
+INSERT INTO
+   `products`(`productCode`, `productName`, `productLine`, `productScale`, `productVendor`, `productDescription`, `quantityInStock`, `buyPrice`, `MSRP`) 
+VALUES
+   (
+      'S72_7777', '1995 Boeing 777-200ER', 'Planes', '1:72', 'Second Gear Diecast', 'Polished finish. Exact replia with official logos and insignias and retractable wheels.', 5416, NULL, NULL
+   )
+;
+</code></pre>
+
+<p><br></p>
+
+<h3 id="count">COUNT</h3>
+
+<p>COUNT(*) returns the number of rows in a table, while COUNT of a column returns the number of non-NULL entries in that column.</p>
+
+<pre><code>
+SELECT
+   COUNT(*) 
+FROM
+   products;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>COUNT(*)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>111</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>
+SELECT
+   COUNT(buyPrice) 
+FROM
+   products;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>COUNT(buyPrice)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>110</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h3 id="avg">AVG</h3>
+
+<p>The <code>AVG</code> function sums the non-NULL values in a column, and divides that sum by the count of non-NULL values. As the <code>AVG</code> function ignores NULL values, you will notice that attempting to calculate the average of a column by manually summing the column and dividing that sum by the total number of rows will lead to a lower number as this approach has a larger denominator.</p>
+
+<pre><code>
+SELECT
+   AVG(buyPrice),
+   SUM(buyPrice) / COUNT(*) AS 'calculatedAvg' 
+FROM
+   products;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>AVG(buyPrice)</th>
+<th>calculatedAvg</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>54.395182</td>
+<td>53.905135</td>
+</tr>
+</tbody>
+</table></div>
+
+    
+    
+
+    
+
+    
+
+        <h4 class="page-header">Comments</h4>
+
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yanzhugoh" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+
