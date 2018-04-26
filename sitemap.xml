@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://yanzhugoh.github.io/sql/concatenate/</loc>
-    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
+    <loc>https://yanzhugoh.github.io/sql/moving-average/</loc>
+    <lastmod>2018-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yanzhugoh.github.io/sql/generating-derived-fields/</loc>
+    <lastmod>2018-04-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -18,17 +23,12 @@
   </url>
   
   <url>
+    <loc>https://yanzhugoh.github.io/sql/concatenate/</loc>
+    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yanzhugoh.github.io/sql/aggregate-functions/</loc>
-    <lastmod>2018-04-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yanzhugoh.github.io/sql/generating-derived-fields/</loc>
-    <lastmod>2018-04-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://yanzhugoh.github.io/sql/moving-average/</loc>
     <lastmod>2018-04-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -234,7 +234,7 @@
   
   <url>
     <loc>https://yanzhugoh.github.io/</loc>
-    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -264,7 +264,7 @@
   
   <url>
     <loc>https://yanzhugoh.github.io/sql/</loc>
-    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
