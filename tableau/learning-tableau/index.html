@@ -4,7 +4,7 @@
          
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Removing Rows or Columns</title>
+        <title>Learning Tableau</title>
         
         <style>
 
@@ -72,7 +72,7 @@
 
                 <div class="navbar-header">
 
-                    <a class="navbar-brand visible-xs" href="#">Removing Rows or Columns</a>
+                    <a class="navbar-brand visible-xs" href="#">Learning Tableau</a>
 
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
@@ -136,8 +136,8 @@
     
     
 
-    <h4><a href="/pandas/removing-rows-or-columns/">Removing Rows or Columns</a></h4>
-    <h5>January 26, 2018</h5>
+    <h4><a href="/tableau/learning-tableau/">Learning Tableau</a></h4>
+    <h5>May 1, 2018</h5>
     
 
 </div>
@@ -145,77 +145,23 @@
 
     <br> <div class="text-justify"><p></p>
 
-<h3 id="removing-rows-or-columns">Removing Rows or Columns</h3>
+<h3 id="learning-tableau">Learning Tableau</h3>
 
-<p>While in general more data is better than less, it is common to have datasets where certain fields or rows are not of interest for the scope of analysis.</p>
+<p>I have never had the opportunity to use Tableau formally for work, but I have lurked around the <a href="https://public.tableau.com/en-us/s/gallery">Tableau Public Gallery</a> enough to be fascinated and in awe of how data analysts can transform mundane spreadsheets into a beautiful and succinct medium for communication.</p>
 
-<p>Pandas provides us with a handy <code>drop</code> function. As the name suggests, it allows us to remove rows or columns from a DataFrame.</p>
+<h3 id="learning-styles">Learning Styles</h3>
 
-<p><br></p>
+<p>Tableau has built a helpful and closely-knit community, and many have written about their personal journey to becoming to acquiring their current proficiency with the software. I am a <a href="https://en.wikipedia.org/wiki/Kinesthetic_learning">kinesthetic learner</a>, and I have found replicating visualisations created by others to be the most effective.</p>
 
-<h3 id="load-libraries">Load Libraries</h3>
+<h3 id="makeover-monday">Makeover Monday</h3>
 
-<pre><code class="language-python">import pandas as pd
-</code></pre>
+<p><a href="http://www.makeovermonday.co.uk">#MakeoverMonday</a> is a weekly social data project, where a link to a chart and its data is provided and anyone is welcome to rework the chart. The goal is that together, the community can have broader conversations about and with data.</p>
 
-<p><br></p>
+<p>I will be going through past Makeover Monday submissions, where I will attempt to reconstruct submissions that I believe to have breathed new life to the data and presented it in clear and refreshing ways.</p>
 
-<h3 id="load-data">Load Data</h3>
+<h3 id="general-concepts">General Concepts</h3>
 
-<pre><code class="language-python">screening_data = {'name': ['Amy', 'Barry', 'Cory'], 
-                  'age': [20, 25, 30], 
-                  'weight_kg': [45, 50, 55]}
-
-screening_df = pd.DataFrame(screening_data)
-print(screening_df)
-</code></pre>
-
-<pre><code>   age   name  weight_kg
-0   20    Amy         45
-1   25  Barry         50
-2   30   Cory         55
-</code></pre>
-
-<p>The default behavior of <code>drop</code> removes a row from the DataFrame, specified by the index of the row.</p>
-
-<pre><code class="language-python">print(screening_df.drop(0))
-</code></pre>
-
-<pre><code>   age   name  weight_kg
-1   25  Barry         50
-2   30   Cory         55
-</code></pre>
-
-<p>It is also possible to drop multiple rows by passing a list of row indexes.</p>
-
-<pre><code class="language-python">print(screening_df.drop([0, 1]))
-</code></pre>
-
-<pre><code>   age  name  weight_kg
-2   30  Cory         55
-</code></pre>
-
-<p>To drop a column, pass the column label and the parameter <code>axis=1</code> to the function.</p>
-
-<pre><code class="language-python">print(screening_df.drop('weight_kg', axis=1))
-</code></pre>
-
-<pre><code>   age   name
-0   20    Amy
-1   25  Barry
-2   30   Cory
-</code></pre>
-
-<p>Similar to how we can drop multiple rows, passing a list of column headers will allow us to drop multiple columns.</p>
-
-<pre><code class="language-python">print(screening_df.drop(['age', 'weight_kg'], axis=1))
-</code></pre>
-
-<pre><code>    name
-0    Amy
-1  Barry
-2   Cory
-</code></pre></div>
+<p>General concepts learnt will be listed below, while techniques specific to a visualisation can be found within its article.</p></div>
 
     
     
