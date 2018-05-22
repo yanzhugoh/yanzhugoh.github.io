@@ -149,10 +149,14 @@
 
 <p>Parsed your date/time fields as a Python <code>datetime</code> object? Great! Let&rsquo;s go one step further - depending on the problem, it can be extremely valuable to generate additional features of varying granularity from the <code>datetime</code> object.</p>
 
+<p><br></p>
+
 <h3 id="load-libraries">Load Libraries</h3>
 
 <pre><code class="language-python">import pandas as pd
 </code></pre>
+
+<p><br></p>
 
 <h3 id="load-data">Load Data</h3>
 
@@ -169,9 +173,13 @@ df = pd.DataFrame(data)
 df['Start Date'] = pd.to_datetime(df['Start Date'], format='%m/%d/%Y %H:%M:%S')
 </code></pre>
 
+<p><br></p>
+
 <h3 id="vectorised-datetime-function">Vectorised Datetime Function</h3>
 
 <p><code>pandas.Series.dt</code> allows us to apply a function to the entire column.</p>
+
+<p><br></p>
 
 <h3 id="extract-hour">Extract Hour</h3>
 
@@ -219,6 +227,8 @@ df[['Start Date', 'Start Hour']].head()
 </table>
 </div>
 
+<p><br></p>
+
 <h3 id="extract-minute">Extract Minute</h3>
 
 <pre><code class="language-python">df['Start Minute'] = df['Start Date'].dt.minute
@@ -264,6 +274,8 @@ df[['Start Date', 'Start Minute']].head()
   </tbody>
 </table>
 </div>
+
+<p><br></p>
 
 <h3 id="extract-year">Extract Year</h3>
 
@@ -311,6 +323,8 @@ df[['Start Date', 'Start Year']].head()
 </table>
 </div>
 
+<p><br></p>
+
 <h3 id="extract-month">Extract Month</h3>
 
 <pre><code class="language-python">df['Start Month'] = df['Start Date'].dt.month
@@ -356,6 +370,8 @@ df[['Start Date', 'Start Month']].head()
   </tbody>
 </table>
 </div>
+
+<p><br></p>
 
 <h3 id="convert-numerical-month-to-alphabetical-representation">Convert Numerical Month to Alphabetical Representation</h3>
 
@@ -453,6 +469,8 @@ df[['Start Date', 'Start Month Abbr']].head()
 </table>
 </div>
 
+<p><br></p>
+
 <h3 id="extract-day-of-week">Extract Day of Week</h3>
 
 <p>The <code>dayofweek</code> function returns a zero-indexed representation of the day of the week, where 0 is Monday and 6 is Sunday.</p>
@@ -500,6 +518,8 @@ df[['Start Date', 'Start Day']].head()
   </tbody>
 </table>
 </div>
+
+<p><br></p>
 
 <h3 id="convert-numerical-day-to-alphabetical-representation">Convert Numerical Day to Alphabetical Representation</h3>
 

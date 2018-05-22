@@ -147,7 +147,7 @@
 
 <h3 id="removing-rows-or-columns">Removing Rows or Columns</h3>
 
-<p>While in general more data is better than less, it is common to have datasets where certain fields or rows are not of interest for the scope of analysis.</p>
+<p>While in general having more data is better, it is common to have datasets where certain fields or rows are not of interest for the scope of analysis.</p>
 
 <p>Pandas provides us with a handy <code>drop</code> function. As the name suggests, it allows us to remove rows or columns from a DataFrame.</p>
 
@@ -176,7 +176,8 @@ print(screening_df)
 2   30   Cory         55
 </code></pre>
 
-<p>The default behavior of <code>drop</code> removes a row from the DataFrame, specified by the index of the row.</p>
+<p><br>
+The default behavior of <code>drop</code> removes a row from the DataFrame, specified by the index of the row.</p>
 
 <pre><code class="language-python">print(screening_df.drop(0))
 </code></pre>
@@ -186,7 +187,8 @@ print(screening_df)
 2   30   Cory         55
 </code></pre>
 
-<p>It is also possible to drop multiple rows by passing a list of row indexes.</p>
+<p><br>
+It is also possible to drop multiple rows by passing a list of row indexes.</p>
 
 <pre><code class="language-python">print(screening_df.drop([0, 1]))
 </code></pre>
@@ -195,7 +197,8 @@ print(screening_df)
 2   30  Cory         55
 </code></pre>
 
-<p>To drop a column, pass the column label and the parameter <code>axis=1</code> to the function.</p>
+<p><br>
+To drop a column, pass the column label and the parameter <code>axis=1</code> to the function.</p>
 
 <pre><code class="language-python">print(screening_df.drop('weight_kg', axis=1))
 </code></pre>
@@ -206,7 +209,8 @@ print(screening_df)
 2   30   Cory
 </code></pre>
 
-<p>Similar to how we can drop multiple rows, passing a list of column headers will allow us to drop multiple columns.</p>
+<p><br>
+Similar to how we can drop multiple rows, passing a list of column headers will allow us to drop multiple columns.</p>
 
 <pre><code class="language-python">print(screening_df.drop(['age', 'weight_kg'], axis=1))
 </code></pre>

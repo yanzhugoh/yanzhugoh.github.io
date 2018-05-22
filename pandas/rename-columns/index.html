@@ -173,7 +173,8 @@ print(tips.head())
 4       24.59  3.61  Female     No  Sun  Dinner     4
 </code></pre>
 
-<p>We can access the columns using the <code>columns</code> variable.</p>
+<p><br>
+We can access the columns using the <code>columns</code> variable.</p>
 
 <pre><code class="language-python">print(tips.columns)
 </code></pre>
@@ -181,7 +182,8 @@ print(tips.head())
 <pre><code>Index(['total_bill', 'tip', 'sex', 'smoker', 'day', 'time', 'size'], dtype='object')
 </code></pre>
 
-<p>We can replace the existing columns by assigning a list of the <strong>same length</strong> as the existing column to the DataFrame&rsquo;s <code>columns</code> variable.</p>
+<p><br>
+We can replace the existing columns by assigning a list of the <strong>same length</strong> as the existing column to the DataFrame&rsquo;s <code>columns</code> variable.</p>
 
 <pre><code class="language-python">new_columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 tips.columns = new_columns
@@ -196,7 +198,8 @@ print(tips.head())
 4  24.59  3.61  Female  No  Sun  Dinner  4
 </code></pre>
 
-<p>If you are looking for a more targeted operation, you are covered by the <code>rename</code> method.</p>
+<p><br>
+If you are looking for a more targeted operation, you are covered by the <code>rename</code> method.</p>
 
 <pre><code class="language-python">tips = tips.rename(columns={'a': 'total_bill_amount'})
 print(tips.head(5))
@@ -210,7 +213,8 @@ print(tips.head(5))
 4              24.59  3.61  Female  No  Sun  Dinner  4
 </code></pre>
 
-<p>We can also pass a function to <code>rename</code> and specify the axis for it to be applied.</p>
+<p><br>
+We can also pass a function to <code>rename</code> and specify the axis for it to be applied.</p>
 
 <pre><code class="language-python">tips = tips.rename(str.upper, axis=1)
 print(tips.head(2))

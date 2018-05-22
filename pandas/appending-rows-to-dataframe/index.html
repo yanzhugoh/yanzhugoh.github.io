@@ -151,10 +151,14 @@
 
 <p>Enter Pandas&rsquo; very aptly named <code>append</code> function.</p>
 
+<p><br></p>
+
 <h3 id="import-libraries">Import Libraries</h3>
 
 <pre><code class="language-python">import pandas as pd
 </code></pre>
+
+<p><br></p>
 
 <h3 id="load-data">Load Data</h3>
 
@@ -171,7 +175,8 @@ mon_df = pd.DataFrame(mon)
 tue_df = pd.DataFrame(tue)
 </code></pre>
 
-<p>To combine data for both days, we simply call the <code>append</code> function using the first DataFrame, and supply the second DataFrame as our input to the function.</p>
+<p><br>
+To combine data for both days, we simply call the <code>append</code> function using the first DataFrame, and supply the second DataFrame as our input to the function.</p>
 
 <pre><code class="language-python">combined = mon_df.append(tue_df)
 print(combined.head(6))
@@ -186,7 +191,8 @@ print(combined.head(6))
 2  Tue   Cory  Present
 </code></pre>
 
-<p>What happens when the columns of the DataFrames do not match? We will simulate this by creating a third DataFrame with an additional column (<code>Punctual</code>), while at the same time removing the <code>Status</code> column.</p>
+<p><br>
+What happens when the columns of the DataFrames do not match? We will simulate this by creating a third DataFrame with an additional column (<code>Punctual</code>), while at the same time removing the <code>Status</code> column.</p>
 
 <pre><code class="language-python">wed = {'Day': ['Wed', 'Wed', 'Wed'], 
        'Name': ['Amy', 'Barry', 'Cory'], 

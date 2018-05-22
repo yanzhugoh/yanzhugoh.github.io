@@ -163,7 +163,8 @@
 <pre><code class="language-python">series = pd.Series([500, 100, 50, 5, 50, 100, 500])
 </code></pre>
 
-<p>By default, the data is sorted in ascending order. Note that the indexes are unchanged.</p>
+<p><br>
+By default, the data is sorted in ascending order. Note that the indexes are unchanged.</p>
 
 <pre><code class="language-python">print(series.sort_values())
 </code></pre>
@@ -178,7 +179,8 @@
 dtype: int64
 </code></pre>
 
-<p>You can pass the parameter <code>ascending=False</code> to sort the series in descending order.</p>
+<p><br>
+You can pass the parameter <code>ascending=False</code> to sort the series in descending order.</p>
 
 <pre><code class="language-python">print(series.sort_values(ascending=False))
 </code></pre>
@@ -193,7 +195,8 @@ dtype: int64
 dtype: int64
 </code></pre>
 
-<p>It is also possible to sort on the index.</p>
+<p><br>
+It is also possible to sort on the index.</p>
 
 <pre><code class="language-python">print(series.sort_index())
 </code></pre>
@@ -228,7 +231,8 @@ print(sales.head())
 3   Feb    vanilla                0.50          125
 </code></pre>
 
-<p>Sorting the values of a column is easy - simply select the column and call the <code>sort_values</code> function.</p>
+<p><br>
+Sorting the values of a column is easy - simply select the column and call the <code>sort_values</code> function.</p>
 
 <pre><code class="language-python">print(sales['flavors'].sort_values())
 </code></pre>
@@ -240,7 +244,8 @@ print(sales.head())
 Name: flavors, dtype: object
 </code></pre>
 
-<p>You can sort multiple columns through the use of the <code>by</code> parameter.</p>
+<p><br>
+You can sort multiple columns through the use of the <code>by</code> parameter.</p>
 
 <pre><code class="language-python">print(sales[['month', 'flavors']].sort_values(by=['month', 'flavors']))
 </code></pre>
@@ -252,7 +257,8 @@ Name: flavors, dtype: object
 2   Jan  chocolate
 </code></pre>
 
-<p>When sorting multiple columns, the <code>ascending</code> parameter has an additional function - it lets us specify the order in which each column stated in the <code>by</code> parameter is being sorted.</p>
+<p><br>
+When sorting multiple columns, the <code>ascending</code> parameter has an additional function - it lets us specify the order in which each column stated in the <code>by</code> parameter is being sorted.</p>
 
 <pre><code class="language-python">print(sales[['month', 'flavors']].sort_values(by=['month', 'flavors'], ascending=[False, True]))
 </code></pre>
