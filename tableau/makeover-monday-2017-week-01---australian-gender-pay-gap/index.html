@@ -4,7 +4,7 @@
          
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Learning Tableau</title>
+        <title>Makeover Monday, 2017 Week 01 - Australian Gender Pay Gap</title>
         
         <style>
 
@@ -72,7 +72,7 @@
 
                 <div class="navbar-header">
 
-                    <a class="navbar-brand visible-xs" href="#">Learning Tableau</a>
+                    <a class="navbar-brand visible-xs" href="#">Makeover Monday, 2017 Week 01 - Australian Gender Pay Gap</a>
 
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
@@ -136,8 +136,8 @@
     
     
 
-    <h4><a href="/tableau/learning-tableau/">Learning Tableau</a></h4>
-    <h5>May 1, 2018</h5>
+    <h4><a href="/tableau/makeover-monday-2017-week-01---australian-gender-pay-gap/">Makeover Monday, 2017 Week 01 - Australian Gender Pay Gap</a></h4>
+    <h5>May 8, 2018</h5>
     
 
 </div>
@@ -145,35 +145,122 @@
 
     <br> <div class="text-justify"><p></p>
 
-<h3 id="learning-tableau">Learning Tableau</h3>
+<h3 id="makeover-monday-2017-week-01-australia-s-gender-pay-gap">Makeover Monday, 2017 Week 01 - Australia&rsquo;s Gender Pay Gap</h3>
 
-<p>I have never had the opportunity to use Tableau formally for work, but I have lurked around the <a href="https://public.tableau.com/en-us/s/gallery">Tableau Public Gallery</a> and was fascinated and in awe by how people have transformed mundane spreadsheets into a beautiful and succinct mediums for communication.</p>
+<p>For this week, we are presented with a list of the top 50 highest paying jobs in Australia, broken down by gender. The data was collected by the Australian government and published in an <a href="http://www.womensagenda.com.au/latest/eds-blog/australia-s-50-highest-paying-jobs-are-paying-men-significantly-more/">article</a> by Women&rsquo;s Agenda.</p>
 
-<p><br></p>
-
-<h3 id="learning-styles">Learning Styles</h3>
-
-<p>Tableau has built a helpful and closely-knit community, and many have written their journey to acquiring their proficiency with the software. I am a <a href="https://en.wikipedia.org/wiki/Kinesthetic_learning">kinesthetic learner</a>, and I have found that replicating visualisations and thinking about how I can improve on existing ones is the most efficient and effective means to learn.</p>
+<p>There is no makeover here as there is no visualisation in the original article. The challenge is to present the information in a way that is better than simply listing it.</p>
 
 <p><br></p>
 
-<h3 id="makeover-monday">Makeover Monday</h3>
+<h3 id="explore-the-data">Explore the Data</h3>
 
-<p><a href="http://www.makeovermonday.co.uk">#MakeoverMonday</a> is a weekly social data project, where a link to a chart and its data is provided and anyone is welcome to rework the chart. The goal is that together, the community can have broader conversations about and with data.</p>
+<pre><code class="language-python">import pandas as pd
 
-<p>I will be revisiting past Makeover Monday submissions, beginning from the start of 2017. For each makeover, I will attempt the following.</p>
+aust_income = pd.read_excel('./Australian Taxable Income.xlsx')
+aust_income = aust_income.sort_values(['Occupation', 'Gender'])
+aust_income.head(2)
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender Rank</th>
+      <th>Occupation</th>
+      <th>Gender</th>
+      <th>Individuals</th>
+      <th>Average Taxable Income $</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>795</td>
+      <td>Abattoir process worker; Meat process worker; ...</td>
+      <td>Female</td>
+      <td>5961</td>
+      <td>36359</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>881</td>
+      <td>Abattoir process worker; Meat process worker; ...</td>
+      <td>Male</td>
+      <td>17241</td>
+      <td>40954</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><br>
+The dataset contains 2,197 rows. Each row contains the following information about each occupation</p>
 
 <ul>
-<li>Critique the approach taken by the original visualisation, and how it has been improved upon.</li>
-<li>Replicate and learn the techniques behind outstanding makeovers</li>
-<li>Create my own visualisation that presents the data from a perspective not covered by any of the makeovers I have seen. It does not matter that my perspective is not the most appropriate, but the key here is to actively think about the various ways that a visualisation can be constructed.</li>
+<li>Gender Rank; the rank of the occupation, sorted by gender and descending average taxable income</li>
+<li>Individuals; number of people for the gender, in the occupation</li>
+<li>Average Taxable Income $; the average, assumed to be annual average taxable income</li>
+</ul>
+
+<p>Interesting things to note:
+- There are occupations that are confined to a single gender (Boxer, hunting guide (amongst others) for males only, Mothercraft nurse applies for females only)</p>
+
+<p><br></p>
+
+<h3 id="ways-to-present-the-data">Ways to Present the Data</h3>
+
+<ul>
+<li>For the top 50 paying jobs, demonstrate the pay discrepancy between males and females.</li>
+<li>For the top 50 most popular jobs sorted by gender, demonstrate the pay discrepency between males and females.</li>
+<li>Display the top 50 jobs based on the pay discrepancy between males and females.</li>
 </ul>
 
 <p><br></p>
 
-<h3 id="general-concepts">General Concepts</h3>
+<h3 id="review-of-makeovers">Review of Makeovers</h3>
 
-<p>General concepts learnt will be listed below, while techniques specific to a visualisation can be found within its article.</p></div>
+<p>The following are some of the makeovers that I really like, with the reasons why.</p>
+
+<ul>
+<li><p>Lilach Manheim presented the wage gap by calculating the time it will take a man to earn a woman&rsquo;s wage if they were in the same career.</p>
+
+<p><img src="Australian Gender Wage Gap - Lilach Manheim.jpg" alt="drawing" style="width: 750px; height: 580px;"/>
+<br></p></li>
+
+<li><p>Matt Chambers utilised a bar chart to demonstrate the extent of the differences between men and women wages within the same occupation.</p>
+
+<p><img src="Australian Gender Pay Gap - Matt Chambers.jpg" alt="drawing" style="width: 750px; height: 890px;"/>
+<br></p></li>
+
+<li><p>My favourite has to be the one created by Joe Cristo. He calculated the differences and charted jobs where women were paid more than men, and showed the large discrepancy there. His key message was that there are far more jobs in the top 50 paying ones where women are paid less than men.</p>
+
+<p><img src="Gender pay gap in Australia - Joe Kristo.jpg" alt="drawing" style="width: 750px; height: 530px;"/>
+<br></p></li>
+
+<li><p>There were many submissions that presented the wage gap using <a href="http://kb.tableau.com/articles/howto/create-a-barbell-chart">barbell charts</a>.</p></li>
+</ul>
+
+<p><br></p>
+
+<h3 id="my-makeover">My Makeover</h3>
+
+<p>My goal was to highlight the wage discrepancy for the careers that affect the women most, which I have defined as the top 50 most common careers for Australian women. You can find the interactive version <a href="https://public.tableau.com/profile/yanzhu#!/vizhome/AustralianWageGap-MostPopularJobsWomen/IncomeGapDashboard">here</a>.</p>
+
+<p><br>
+<img src="Australian Wage Gap - Yanzhu.jpg" alt="drawing" style="width: 800px; height: 1010px;"/></p></div>
 
     
     
