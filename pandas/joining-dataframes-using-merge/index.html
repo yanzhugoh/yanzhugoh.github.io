@@ -211,7 +211,8 @@ print(people_flavor_df)
 5          1          3
 </code></pre>
 
-<p>Our end goal is to have a DataFrame that contains the person&rsquo;s name as well as their preferred flavor of ice cream. The first step is to combine the joining DataFrame with <code>people_df</code> to retrieve the names.</p>
+<p><br>
+Our end goal is to have a DataFrame that contains the person&rsquo;s name as well as their preferred flavor of ice cream. The first step is to combine the joining DataFrame with <code>people_df</code> to retrieve the names.</p>
 
 <p>We are able to specifiy a join between a specific column of a DataFrame and the index of another DataFrame.</p>
 
@@ -228,7 +229,8 @@ print(people_flavor_df)
 5          1          3   Cory
 </code></pre>
 
-<p>We complete the process by matching the indexes in column <code>flavor_id</code> with that in the <code>flavors_df</code>.</p>
+<p><br>
+We complete the process by matching the indexes in column <code>flavor_id</code> with that in the <code>flavors_df</code>.</p>
 
 <pre><code class="language-python">people_flavor_df = people_flavor_df.merge(flavors_df, how='inner', 
                                           left_on='flavor_id', right_index=True)

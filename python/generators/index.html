@@ -157,7 +157,8 @@
 
 <p>What then happens if we need a function to generate a list of values that is too large to store in memories? Python addresses this through its <code>yield</code> keyword.</p>
 
-<p>Simply, generators are functions that return an object on which we can call <code>next()</code>. For each call, it returns some value until all values have been generated, after which it will raise a <code>StopIteration</code> exception.</p>
+<p><br>
+Simply, generators are functions that return an object on which we can call <code>next()</code>. For each call, it returns some value until all values have been generated, after which it will raise a <code>StopIteration</code> exception.</p>
 
 <p>For a normal function, execution stops once it hits the first <code>return</code> statement. Therefore, the function will never return &lsquo;second&rsquo;.</p>
 
@@ -183,7 +184,8 @@ Printing value from second iteration.
 first
 </code></pre>
 
-<p>The first difference that you will notice for a generator object is when you print the variable it has been assigned to - it will not be printing the return value.</p>
+<p><br>
+The first difference that you will notice for a generator object is when you print the variable it has been assigned to - it will not be printing the return value.</p>
 
 <pre><code class="language-python">def generator_function():
     yield 'first'
@@ -196,7 +198,8 @@ print(gen)
 <pre><code>&lt;generator object generator_function at 0x000002126EF6FBA0&gt;
 </code></pre>
 
-<p>The first time that we call <code>next</code> on the generator, it returns the value tied to the first <code>yield</code> statement.</p>
+<p><br>
+The first time that we call <code>next</code> on the generator, it returns the value tied to the first <code>yield</code> statement.</p>
 
 <pre><code class="language-python">print(next(gen))
 </code></pre>
@@ -204,7 +207,8 @@ print(gen)
 <pre><code>first
 </code></pre>
 
-<p>Notice that the function remembers where it last left off and it will return the value from the next <code>yield</code> statement.</p>
+<p><br>
+Notice that the function remembers where it last left off and it will return the value from the next <code>yield</code> statement.</p>
 
 <pre><code class="language-python">print(next(gen))
 </code></pre>
@@ -212,7 +216,8 @@ print(gen)
 <pre><code>second
 </code></pre>
 
-<p>Once the function has run out of values to return, it will throw a <code>StopIteration</code> exception.</p>
+<p><br>
+Once the function has run out of values to return, it will throw a <code>StopIteration</code> exception.</p>
 
 <pre><code class="language-python">try:
     print(next(gen))

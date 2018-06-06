@@ -162,7 +162,8 @@ print(empty_dict)
 <pre><code>{}
 </code></pre>
 
-<p>The <code>dict()</code> function produces the same result.</p>
+<p><br>
+The <code>dict()</code> function produces the same result.</p>
 
 <pre><code class="language-python">empty_dict = dict()
 print(empty_dict)
@@ -171,7 +172,8 @@ print(empty_dict)
 <pre><code>{}
 </code></pre>
 
-<p>Expectedly, an empty dictionary is not very interesting. Let&rsquo;s create a dictionary to store the ice cream preferences of Mary, Jane and June.</p>
+<p><br>
+Expectedly, an empty dictionary is not very interesting. Let&rsquo;s create a dictionary to store the ice cream preferences of Mary, Jane and June.</p>
 
 <p>The items in a dictionary are enclosed in curly braces, with each <em>key: value</em> pair seperated by a colon.</p>
 
@@ -196,7 +198,8 @@ print(preferences)
 <pre><code>dict_keys(['Mary', 'Jane', 'June'])
 </code></pre>
 
-<p><code>values()</code> allows us to retrieve the flavors.</p>
+<p><br>
+<code>values()</code> allows us to retrieve the flavors.</p>
 
 <pre><code class="language-python">print(preferences.values())
 </code></pre>
@@ -204,7 +207,8 @@ print(preferences)
 <pre><code>dict_values(['vanilla', 'chocolate', 'chocolate'])
 </code></pre>
 
-<p>If we want to iterate on each key-value pair, we can use the <code>items()</code> function.</p>
+<p><br>
+If we want to iterate on each key-value pair, we can use the <code>items()</code> function.</p>
 
 <pre><code class="language-python">for key, value in preferences.items():
     print('Key: ' + key)
@@ -221,7 +225,8 @@ Key: June
 Value: chocolate
 </code></pre>
 
-<p>You can access values directly if you know the key.</p>
+<p><br>
+You can access values directly if you know the key.</p>
 
 <pre><code class="language-python">print(preferences['Mary'])
 </code></pre>
@@ -249,7 +254,8 @@ print(preferences)
 <pre><code>{'Mary': 'vanilla', 'Jane': 'chocolate', 'June': 'chocolate'}
 </code></pre>
 
-<p>The second way is by using the <code>pop()</code> function. The key difference is that <code>pop()</code> returns the value of the key that was removed.</p>
+<p><br>
+The second way is by using the <code>pop()</code> function. The key difference is that <code>pop()</code> returns the value of the key that was removed.</p>
 
 <pre><code class="language-python">preferences['John'] = 'strawberry'
 print(preferences['John'])
@@ -289,7 +295,8 @@ print(word_counts)
 <pre><code>{'apple': 3, 'banana': 2, 'cucumber': 1}
 </code></pre>
 
-<p>An alternative method will be to create a <code>defaultdict</code> (from Python&rsquo;s in-built collection of <a href="https://docs.python.org/2/library/collections.html">high performance data structures</a>)</p>
+<p><br>
+An alternative method will be to create a <code>defaultdict</code> (from Python&rsquo;s in-built collection of <a href="https://docs.python.org/2/library/collections.html">high performance data structures</a>)</p>
 
 <pre><code class="language-python">from collections import defaultdict
 
