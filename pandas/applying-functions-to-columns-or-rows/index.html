@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -165,19 +169,73 @@ import seaborn as sns # to retrieve the titanic dataset
 <p>The titanic dataset contains information about the passengers aboard the ill-fated ship, along with whether they survived.</p>
 
 <pre><code class="language-python">titanic = sns.load_dataset('titanic')
-print(titanic.head(3))
+cols_of_interest = ['survived', 'pclass', 'sex', 'age', 'who', 'alive']
+titanic = titanic.loc[:, cols_of_interest]
+titanic.head()
 </code></pre>
 
-<pre><code>   survived  pclass     sex   age  sibsp  parch     fare embarked  class  \
-0         0       3    male  22.0      1      0   7.2500        S  Third   
-1         1       1  female  38.0      1      0  71.2833        C  First   
-2         1       3  female  26.0      0      0   7.9250        S  Third   
-
-     who  adult_male deck  embark_town alive  alone  
-0    man        True  NaN  Southampton    no  False  
-1  woman       False    C    Cherbourg   yes  False  
-2  woman       False  NaN  Southampton   yes   True  
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>who</th>
+      <th>alive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>man</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>woman</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>woman</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>woman</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>man</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br></p>
 
@@ -189,7 +247,7 @@ print(titanic.head(3))
 
 <p>Based on the <code>groupby</code> below, we can tell the relationship between the two columns.</p>
 
-<pre><code class="language-python">print(list(titanic.groupby(['survived', 'alive']).groups))
+<pre><code class="language-python">list(titanic.groupby(['survived', 'alive']).groups)
 </code></pre>
 
 <pre><code>[(0, 'no'), (1, 'yes')]
@@ -197,43 +255,125 @@ print(titanic.head(3))
 
 <pre><code class="language-python">alive_map = {0: 'no', 1: 'yes'}
 titanic = titanic.drop('alive', axis=1)
-print(titanic.head(3))
+titanic.head()
 </code></pre>
 
-<pre><code>   survived  pclass     sex   age  sibsp  parch     fare embarked  class  \
-0         0       3    male  22.0      1      0   7.2500        S  Third   
-1         1       1  female  38.0      1      0  71.2833        C  First   
-2         1       3  female  26.0      0      0   7.9250        S  Third   
-
-     who  adult_male deck  embark_town  alone  
-0    man        True  NaN  Southampton  False  
-1  woman       False    C    Cherbourg  False  
-2  woman       False  NaN  Southampton   True  
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>who</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>man</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>woman</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>woman</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>woman</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>man</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <pre><code class="language-python">titanic['alive'] = titanic['survived'].map(alive_map)
-print(titanic[['survived', 'alive']].head(3))
+titanic[['survived', 'alive']].head()
 </code></pre>
 
-<pre><code>   survived alive
-0         0    no
-1         1   yes
-2         1   yes
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>alive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br></p>
 
 <h3 id="apply">Apply</h3>
 
-<p>A closely related function is <code>apply</code>- as the name suggests, it accepts an input function which is then applied to the row or column. We will demonstrate its functionality by recreating the <code>who</code> column.</p>
+<p>A closely related function is <code>apply</code> - as the name suggests, it accepts an input function which is then applied to the row or column. We will demonstrate its functionality by recreating the <code>who</code> column.</p>
 
 <p>From the following <code>groupby</code> statement and observing the maximum age of a &lsquo;child&rsquo;, we can easily derive the logic used to create this column.</p>
 
-<pre><code class="language-python">print(list(titanic.groupby(['sex', 'who']).groups))
+<pre><code class="language-python">list(titanic.groupby(['sex', 'who']).groups)
 </code></pre>
 
 <pre><code>[('female', 'child'), ('female', 'woman'), ('male', 'child'), ('male', 'man')]
 </code></pre>
+
+<p><br>
+We summarise this relationship in the table below.</p>
 
 <table>
 <thead>
@@ -281,21 +421,72 @@ print(titanic[['survived', 'alive']].head(3))
             return 'woman'
 
 titanic['who_recreated'] = titanic.apply(generate_who, axis=1)
-print(titanic[['who', 'who_recreated']].head(10))
+titanic[['who', 'who_recreated']].head(10)
 </code></pre>
 
-<pre><code>     who who_recreated
-0    man           man
-1  woman         woman
-2  woman         woman
-3  woman         woman
-4    man           man
-5    man           man
-6    man           man
-7  child         child
-8  woman         woman
-9  child         child
-</code></pre></div>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>who</th>
+      <th>who_recreated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>man</td>
+      <td>man</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>woman</td>
+      <td>woman</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>woman</td>
+      <td>woman</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>woman</td>
+      <td>woman</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>man</td>
+      <td>man</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>man</td>
+      <td>man</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>man</td>
+      <td>man</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>child</td>
+      <td>child</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>woman</td>
+      <td>woman</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>child</td>
+      <td>child</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 
     
     

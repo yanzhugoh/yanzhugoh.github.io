@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -164,14 +168,13 @@
 <pre><code class="language-python">import pandas as pd
 </code></pre>
 
-<p><br>
-The <a href="https://en.wikipedia.org/wiki/Likert_scale">Likert scale</a> is a psychometric scale commonly used in research that employs questionnaires. In its string representation below, Pandas is unable to determine that there is a logical order to the values and therefore sorting is performed lexically.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Likert_scale">Likert scale</a> is a psychometric scale commonly used in research that employs questionnaires. In its string representation below, Pandas is unable to determine that there is a logical order to the values and therefore sorting is performed lexically.</p>
 
 <pre><code class="language-python">likert = ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'Strongly Disagree']
 responses = pd.Series(likert)
 
 responses = responses.sort_values()
-print(responses)
+responses
 </code></pre>
 
 <pre><code>1                Agree
@@ -194,29 +197,77 @@ dtype: object
           'score': ['better', 'good', 'best']}
 
 students_df = pd.DataFrame(data=students)
-print(students_df)
+students_df
 </code></pre>
 
-<pre><code>   name   score
-0   Amy  better
-1  Bary    good
-2  Cory    best
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Amy</td>
+      <td>better</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bary</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cory</td>
+      <td>best</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 To enable Pandas to correctly sort the <code>score</code> column, we will need to convert it to a <code>category</code> using the <code>Categorical</code> class.</p>
 
-<pre><code class="language-python">score_type = pd.Categorical(values=students_df['score'], categories=['good', 'better', 'best'], ordered=True)
+<pre><code class="language-python">score_type = pd.Categorical(values=students_df['score'], 
+                            categories=['good', 'better', 'best'], ordered=True)
 students_df['score'] = students_df['score'].astype(score_type)
 students_df = students_df.sort_values(by='score')
-print(students_df)
+
+students_df
 </code></pre>
 
-<pre><code>   name   score
-1  Bary    good
-0   Amy  better
-2  Cory    best
-</code></pre></div>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Bary</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Amy</td>
+      <td>better</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cory</td>
+      <td>best</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 
     
     

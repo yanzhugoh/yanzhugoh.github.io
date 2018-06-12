@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -166,7 +170,7 @@ import seaborn as sns # to retrieve the tips dataset
 <h3 id="set-seaborn-visualisation-options">Set Seaborn Visualisation Options</h3>
 
 <pre><code class="language-python">sns.set_style('whitegrid')
-sns.set_palette('Set3')
+sns.set_palette('pastel')
 </code></pre>
 
 <p><br></p>
@@ -176,18 +180,80 @@ sns.set_palette('Set3')
 <p>We will be exploring the &ldquo;tips&rdquo; dataset in seaborn, which contains data recorded by a waiter about the tips that he received.</p>
 
 <pre><code class="language-python">tips = sns.load_dataset('tips')
-print(tips.head(5))
+tips.head(5)
 </code></pre>
 
-<pre><code>   total_bill   tip     sex smoker  day    time  size
-0       16.99  1.01  Female     No  Sun  Dinner     2
-1       10.34  1.66    Male     No  Sun  Dinner     3
-2       21.01  3.50    Male     No  Sun  Dinner     3
-3       23.68  3.31    Male     No  Sun  Dinner     2
-4       24.59  3.61  Female     No  Sun  Dinner     4
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_bill</th>
+      <th>tip</th>
+      <th>sex</th>
+      <th>smoker</th>
+      <th>day</th>
+      <th>time</th>
+      <th>size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16.99</td>
+      <td>1.01</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10.34</td>
+      <td>1.66</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21.01</td>
+      <td>3.50</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>23.68</td>
+      <td>3.31</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>24.59</td>
+      <td>3.61</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-<p>For continuous variables such as <em>total_bill</em> and <em>tip</em>, a histogram succinctly captures its distribution by &ldquo;bucketing&rdquo; the values into discrete ranges.</p>
+<p><br>
+For continuous variables such as <em>total_bill</em> and <em>tip</em>, a histogram succinctly captures its distribution by &ldquo;bucketing&rdquo; the values into discrete ranges.</p>
 
 <pre><code class="language-python">bill_hist = sns.distplot(tips['total_bill'], kde=False)
 bill_hist.set(xlabel='Total Bill', ylabel='Count')
@@ -197,35 +263,64 @@ sns.despine()
 
 <p><img src="output_8_0.png" alt="png" /></p>
 
-<p>Discrete variables such as <em>sex</em> and <em>smoker</em> can be summarized using a bar chart.</p>
+<p><br>
+Discrete variables such as <em>sex</em> and <em>smoker</em> can be summarized using a bar chart.</p>
 
-<pre><code class="language-python">sex_counts = tips['sex'].value_counts()
-print(sex_counts.values)
+<pre><code class="language-python">sex_counts = tips['sex'].value_counts().reset_index()
+sex_counts = sex_counts.rename(columns={'index': 'gender', 
+                                        'sex': 'count'})
+sex_counts
 </code></pre>
 
-<pre><code>[157  87]
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gender</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Male</td>
+      <td>157</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Female</td>
+      <td>87</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <pre><code class="language-python"># to control the aspect ratio of the plot
 fig, ax = plt.subplots(figsize=(2.5,5))
 
-sex_counts_bar = sns.barplot(x=sex_counts.index, y=sex_counts.values)
+sex_counts_bar = sns.barplot(x=sex_counts['gender'], y=sex_counts['count'])
+ax.set_xlabel('Gender')
+ax.set_ylabel('Count', labelpad=25, rotation=0)
+
 sns.despine()
 </code></pre>
 
 <p><img src="output_11_0.png" alt="png" /></p>
 
-<p>To understand the relationship between two continuous variables, such as <em>total_bill</em> and <em>tip</em>, we can place their values on a scatter plot. Here, we can see that in general, as total bill increases, tip increases too. However, there is some variance that cannot be explained simply by these 2 variables.</p>
+<p><br>
+To understand the relationship between two continuous variables, such as <em>total_bill</em> and <em>tip</em>, we can place their values on a scatter plot. Here, we can see that in general, as total bill increases, tip increases too. However, there is some variance that cannot be explained simply by these 2 variables.</p>
 
 <pre><code class="language-python">bill_tip_scatter = sns.regplot(x=tips['total_bill'], y=tips['tip'], fit_reg=False)
-bill_tip_scatter.set(xlabel='Total Bill', ylabel='Tip')
-bill_tip_scatter.set_ylabel(bill_tip_scatter.get_ylabel(), rotation=0, labelpad=15)
+bill_tip_scatter.set_xlabel('Total Bill')
+bill_tip_scatter.set_ylabel('Tip', rotation=0, labelpad=15)
 sns.despine()
 </code></pre>
 
 <p><img src="output_13_0.png" alt="png" /></p>
 
-<p>It will certainly be reasonable to believe that the time of day has a direct impact on the tips received. To confirm or denounce our hunch, we can plot a boxplot for the tips, split by the time of day.</p>
+<p><br>
+It will certainly be reasonable to believe that the time of day has a direct impact on the tips received. To confirm or denounce our hunch, we can plot a boxplot for the tips, split by the time of day.</p>
 
 <pre><code class="language-python">tips['time'].unique()
 </code></pre>
@@ -238,14 +333,15 @@ Categories (2, object): [Dinner, Lunch]
 fig, ax = plt.subplots(figsize=(2.5, 6.5))
 
 time_tip_box = sns.boxplot(x=tips['time'], y=tips['tip'])
-time_tip_box.set(xlabel='Time', ylabel='Tip')
-time_tip_box.set_ylabel(time_tip_box.get_ylabel(), rotation=0, labelpad=10)
+time_tip_box.set_xlabel('Time')
+time_tip_box.set_ylabel('Tip ($)', rotation=0, labelpad=20)
 sns.despine()
 </code></pre>
 
 <p><img src="output_16_0.png" alt="png" /></p>
 
-<p>Last, but certainly not least, is the mighty line plot to explore time-series data. For our example, we will explore Singapore&rsquo;s population data.</p>
+<p><br>
+Last, but certainly not least, is the mighty line plot to explore time-series data. For our example, we will explore Singapore&rsquo;s population data.</p>
 
 <pre><code class="language-python">year = [2005, 2006, 2007, 2008, 2009, 2010, 
         2011, 2012, 2013, 2014, 2015]
@@ -253,8 +349,8 @@ population = [4.2658, 4.4014, 4.5886, 4.8394, 4.9876, 5.0767,
               5.1837, 5.3124, 5.3992, 5.4697, 5.535]
 
 pop_line = sns.pointplot(x=year, y=population)
-pop_line.set(xlabel='Year', ylabel='Population\n(millions)')
-pop_line.set_ylabel(pop_line.get_ylabel(), rotation=0, labelpad=35)
+pop_line.set_xlabel('Year')
+pop_line.set_ylabel('Population\n(millions)', rotation=0, labelpad=35)
 sns.despine()
 </code></pre>
 

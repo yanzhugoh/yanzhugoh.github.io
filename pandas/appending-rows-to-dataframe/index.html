@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -179,17 +183,59 @@ tue_df = pd.DataFrame(tue)
 To combine data for both days, we simply call the <code>append</code> function using the first DataFrame, and supply the second DataFrame as our input to the function.</p>
 
 <pre><code class="language-python">combined = mon_df.append(tue_df)
-print(combined.head(6))
+combined.head(6)
 </code></pre>
 
-<pre><code>   Day   Name   Status
-0  Mon    Amy   Absent
-1  Mon  Barry  Present
-2  Mon   Cory  Present
-0  Tue    Amy  Present
-1  Tue  Barry  Present
-2  Tue   Cory  Present
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Day</th>
+      <th>Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mon</td>
+      <td>Amy</td>
+      <td>Absent</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mon</td>
+      <td>Barry</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mon</td>
+      <td>Cory</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Tue</td>
+      <td>Amy</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Tue</td>
+      <td>Barry</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Tue</td>
+      <td>Cory</td>
+      <td>Present</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 What happens when the columns of the DataFrames do not match? We will simulate this by creating a third DataFrame with an additional column (<code>Punctual</code>), while at the same time removing the <code>Status</code> column.</p>
@@ -201,23 +247,91 @@ What happens when the columns of the DataFrames do not match? We will simulate t
 wed_df = pd.DataFrame(wed)
 </code></pre>
 
-<p>For columns that are not common between the appended DataFrames, Pandas will autofill rows of the non-common columns with <code>np.nan</code>.</p>
+<p><br>
+For columns that are not common between the appended DataFrames, Pandas will autofill rows of the non-common columns with <code>np.nan</code>.</p>
 
 <pre><code class="language-python">combined = combined.append(wed_df)
-print(combined)
+combined
 </code></pre>
 
-<pre><code>   Day   Name Punctual   Status
-0  Mon    Amy      NaN   Absent
-1  Mon  Barry      NaN  Present
-2  Mon   Cory      NaN  Present
-0  Tue    Amy      NaN  Present
-1  Tue  Barry      NaN  Present
-2  Tue   Cory      NaN  Present
-0  Wed    Amy      Yes      NaN
-1  Wed  Barry      Yes      NaN
-2  Wed   Cory       No      NaN
-</code></pre></div>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Day</th>
+      <th>Name</th>
+      <th>Punctual</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mon</td>
+      <td>Amy</td>
+      <td>NaN</td>
+      <td>Absent</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mon</td>
+      <td>Barry</td>
+      <td>NaN</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mon</td>
+      <td>Cory</td>
+      <td>NaN</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Tue</td>
+      <td>Amy</td>
+      <td>NaN</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Tue</td>
+      <td>Barry</td>
+      <td>NaN</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Tue</td>
+      <td>Cory</td>
+      <td>NaN</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Wed</td>
+      <td>Amy</td>
+      <td>Yes</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Wed</td>
+      <td>Barry</td>
+      <td>Yes</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Wed</td>
+      <td>Cory</td>
+      <td>No</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 
     
     

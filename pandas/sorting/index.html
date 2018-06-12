@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -166,7 +170,7 @@
 <p><br>
 By default, the data is sorted in ascending order. Note that the indexes are unchanged.</p>
 
-<pre><code class="language-python">print(series.sort_values())
+<pre><code class="language-python">series.sort_values()
 </code></pre>
 
 <pre><code>3      5
@@ -182,7 +186,7 @@ dtype: int64
 <p><br>
 You can pass the parameter <code>ascending=False</code> to sort the series in descending order.</p>
 
-<pre><code class="language-python">print(series.sort_values(ascending=False))
+<pre><code class="language-python">series.sort_values(ascending=False)
 </code></pre>
 
 <pre><code>6    500
@@ -198,7 +202,7 @@ dtype: int64
 <p><br>
 It is also possible to sort on the index.</p>
 
-<pre><code class="language-python">print(series.sort_index())
+<pre><code class="language-python">series.sort_index()
 </code></pre>
 
 <pre><code>0    500
@@ -221,54 +225,182 @@ dtype: int64
               'number_sold': [100, 150, 200, 125]}
 
 sales = pd.DataFrame(sales_data, columns=['month', 'flavors', 'cost_price_dollars', 'number_sold'])
-print(sales.head())
+sales.head()
 </code></pre>
 
-<pre><code>  month    flavors  cost_price_dollars  number_sold
-0   Jan  chocolate                0.50          100
-1   Feb    vanilla                0.45          150
-2   Jan  chocolate                0.55          200
-3   Feb    vanilla                0.50          125
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>flavors</th>
+      <th>cost_price_dollars</th>
+      <th>number_sold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jan</td>
+      <td>chocolate</td>
+      <td>0.50</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Feb</td>
+      <td>vanilla</td>
+      <td>0.45</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jan</td>
+      <td>chocolate</td>
+      <td>0.55</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Feb</td>
+      <td>vanilla</td>
+      <td>0.50</td>
+      <td>125</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
-Sorting the values of a column is easy - simply select the column and call the <code>sort_values</code> function.</p>
+Sorting the values of a column is easy - simply pass the column to the <code>sort_values</code> function.</p>
 
-<pre><code class="language-python">print(sales['flavors'].sort_values())
+<pre><code class="language-python">sales.sort_values(by=['flavors'])
 </code></pre>
 
-<pre><code>0    chocolate
-2    chocolate
-1      vanilla
-3      vanilla
-Name: flavors, dtype: object
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>flavors</th>
+      <th>cost_price_dollars</th>
+      <th>number_sold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jan</td>
+      <td>chocolate</td>
+      <td>0.50</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jan</td>
+      <td>chocolate</td>
+      <td>0.55</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Feb</td>
+      <td>vanilla</td>
+      <td>0.45</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Feb</td>
+      <td>vanilla</td>
+      <td>0.50</td>
+      <td>125</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
-You can sort multiple columns through the use of the <code>by</code> parameter.</p>
+Sorting multiple columns is very similar.</p>
 
-<pre><code class="language-python">print(sales[['month', 'flavors']].sort_values(by=['month', 'flavors']))
+<pre><code class="language-python">sales[['month', 'flavors']].sort_values(by=['month', 'flavors'])
 </code></pre>
 
-<pre><code>  month    flavors
-1   Feb    vanilla
-3   Feb    vanilla
-0   Jan  chocolate
-2   Jan  chocolate
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>flavors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Feb</td>
+      <td>vanilla</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Feb</td>
+      <td>vanilla</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Jan</td>
+      <td>chocolate</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jan</td>
+      <td>chocolate</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 When sorting multiple columns, the <code>ascending</code> parameter has an additional function - it lets us specify the order in which each column stated in the <code>by</code> parameter is being sorted.</p>
 
-<pre><code class="language-python">print(sales[['month', 'flavors']].sort_values(by=['month', 'flavors'], ascending=[False, True]))
+<pre><code class="language-python">sales[['month', 'flavors']].sort_values(by=['month', 'flavors'], ascending=[False, True])
 </code></pre>
 
-<pre><code>  month    flavors
-0   Jan  chocolate
-2   Jan  chocolate
-1   Feb    vanilla
-3   Feb    vanilla
-</code></pre></div>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>flavors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jan</td>
+      <td>chocolate</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jan</td>
+      <td>chocolate</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Feb</td>
+      <td>vanilla</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Feb</td>
+      <td>vanilla</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 
     
     

@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -172,17 +176,6 @@ df.head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -209,17 +202,20 @@ df.head()
 </table>
 </div>
 
-<p>We first split the <code>genres</code> column to create a list of genre lists.</p>
+<p><br>
+We first split the <code>genres</code> column to create a list of genre lists.</p>
 
 <pre><code class="language-python">genres = df.loc[:, ['movie_id', 'genres']]
 genres_list = genres['genres'].str.split('|').tolist()
-print(genres_list)
+genres_list
 </code></pre>
 
-<pre><code>[['Action', 'Adventure', 'Science Fiction', 'Thriller'], ['Adventure', 'Science Fiction', 'Thriller']]
+<pre><code>[['Action', 'Adventure', 'Science Fiction', 'Thriller'],
+ ['Adventure', 'Science Fiction', 'Thriller']]
 </code></pre>
 
-<p>We next create a stacked dataframe.</p>
+<p><br>
+We next create a stacked dataframe.</p>
 
 <pre><code class="language-python">stacked_genres_df = pd.DataFrame(genres_list, index=genres['movie_id']).stack()
 stacked_genres_df.head(7)
@@ -236,24 +232,14 @@ stacked_genres_df.head(7)
 dtype: object
 </code></pre>
 
-<p>Resetting the index has the nice effect of interpolating the <code>movie_id</code>.</p>
+<p><br>
+Resetting the index has the nice effect of interpolating the <code>movie_id</code>.</p>
 
 <pre><code class="language-python">stacked_genres_df = stacked_genres_df.reset_index()
 stacked_genres_df.head(7)
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -310,7 +296,8 @@ stacked_genres_df.head(7)
 </table>
 </div>
 
-<p>Lastly, we remove the unnecessary columns and rename column <code>0</code> to <code>genre</code>.</p>
+<p><br>
+Lastly, we remove the unnecessary columns and rename column <code>0</code> to <code>genre</code>.</p>
 
 <pre><code class="language-python">movie_genre_mapping = stacked_genres_df.loc[:, ['movie_id', 0]]
 movie_genre_mapping.columns = ['movie_id', 'genre']
@@ -318,17 +305,6 @@ movie_genre_mapping.head(7)
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">

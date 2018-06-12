@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -186,7 +190,7 @@ import pandas as pd
 <h3 id="create-series-with-missing-data">Create Series with Missing Data</h3>
 
 <pre><code class="language-python">weights = pd.Series([50, pd.NaT, 60, None, 70, np.nan])
-print(weights)
+weights
 </code></pre>
 
 <pre><code>0      50
@@ -198,7 +202,7 @@ print(weights)
 dtype: object
 </code></pre>
 
-<pre><code class="language-python">print(weights.dropna())
+<pre><code class="language-python">weights.dropna()
 </code></pre>
 
 <pre><code>0    50
@@ -207,7 +211,8 @@ dtype: object
 dtype: object
 </code></pre>
 
-<p>Things are a little more complicated for the <code>dropna</code> function in the DataFrame due to the 2d nature of the data.</p>
+<p><br>
+Things are a little more complicated for the <code>dropna</code> function in the DataFrame due to the 2d nature of the data.</p>
 
 <p><br></p>
 
@@ -218,48 +223,133 @@ dtype: object
              'drinks_pref': ['Coke', None, None]}
 
 food_pref_df = pd.DataFrame(food_pref)
-print(food_pref_df)
+food_pref_df
 </code></pre>
 
-<pre><code>  drinks_pref ice_cream_pref   name
-0        Coke      Chocolate    Amy
-1        None        Vanilla  Berry
-2        None           None   Cory
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>drinks_pref</th>
+      <th>ice_cream_pref</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Coke</td>
+      <td>Chocolate</td>
+      <td>Amy</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>None</td>
+      <td>Vanilla</td>
+      <td>Berry</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>None</td>
+      <td>None</td>
+      <td>Cory</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 Calling <code>dropna</code> on the dataframe without any additional parameters will drop <strong>any</strong> row with empty fields.</p>
 
-<pre><code class="language-python">print(food_pref_df.dropna())
+<pre><code class="language-python">food_pref_df.dropna()
 </code></pre>
 
-<pre><code>  drinks_pref ice_cream_pref name
-0        Coke      Chocolate  Amy
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>drinks_pref</th>
+      <th>ice_cream_pref</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Coke</td>
+      <td>Chocolate</td>
+      <td>Amy</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
-If you wish to drop <strong>any</strong> column that has empty fields, pass the parameter <code>axis=1</code> to the function.</p>
+If you wish to drop any <strong>columns</strong> that has empty fields, pass the parameter <code>axis=1</code> to the function.</p>
 
-<pre><code class="language-python">print(food_pref_df.dropna(axis=1))
+<pre><code class="language-python">food_pref_df.dropna(axis=1)
 </code></pre>
 
-<pre><code>    name
-0    Amy
-1  Berry
-2   Cory
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Amy</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Berry</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cory</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 If you are looking to retain rows with at least <code>n</code> non-blank values, you can utilise the <code>thresh</code> parameter.</p>
 
 <pre><code class="language-python"># keeps all rows with at least 2 non-blank values
-print(food_pref_df.dropna(thresh=2))
+food_pref_df.dropna(thresh=2)
 </code></pre>
 
-<pre><code>  drinks_pref ice_cream_pref   name
-0        Coke      Chocolate    Amy
-1        None        Vanilla  Berry
-</code></pre></div>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>drinks_pref</th>
+      <th>ice_cream_pref</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Coke</td>
+      <td>Chocolate</td>
+      <td>Amy</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>None</td>
+      <td>Vanilla</td>
+      <td>Berry</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 
     
     

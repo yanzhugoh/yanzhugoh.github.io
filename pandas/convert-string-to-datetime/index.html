@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -170,7 +174,7 @@
          'Start Station': 'Clay at Battery'}]
 
 df = pd.DataFrame(data)
-print(df.dtypes)
+df.dtypes
 </code></pre>
 
 <pre><code>End Date         object
@@ -193,7 +197,7 @@ dtype: object
 df['End Date'] = pd.to_datetime(df['End Date'], 
                                 format='%m/%d/%Y %H:%M:%S')
 
-print(df.dtypes)
+df.dtypes
 </code></pre>
 
 <pre><code>End Date         datetime64[ns]
@@ -203,24 +207,14 @@ Trip ID                   int64
 dtype: object
 </code></pre>
 
-<p>Having the <code>Start Date</code> and <code>End Date</code> columns in <code>datetime</code> allows for far easier manipulation of the data.</p>
+<p><br>
+Having the <code>Start Date</code> and <code>End Date</code> columns in <code>datetime</code> allows for far easier manipulation of the data.</p>
 
 <pre><code class="language-python">df['Ride Time'] = df['End Date'] - df['Start Date']
 df.loc[:, ['Start Date', 'End Date', 'Ride Time']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">

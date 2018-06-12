@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -182,38 +186,119 @@ import numpy as np
                   'height_m': [1.6, np.nan, np.nan]}
 
 screening_df = pd.DataFrame(screening_data)
-print(screening_df)
+screening_df
 </code></pre>
 
-<pre><code>   height_m   name  weight_kg
-0       1.6    Amy       60.0
-1       NaN  Barry        NaN
-2       NaN   Cory       70.0
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>height_m</th>
+      <th>name</th>
+      <th>weight_kg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.6</td>
+      <td>Amy</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>Barry</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>Cory</td>
+      <td>70.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 If we wish to replace all blank values with a single value, simply pass it as a parameter to the <code>fillna</code> function.</p>
 
-<pre><code class="language-python">print(screening_df.fillna(50))
+<pre><code class="language-python">screening_df.fillna(50)
 </code></pre>
 
-<pre><code>   height_m   name  weight_kg
-0       1.6    Amy       60.0
-1      50.0  Barry       50.0
-2      50.0   Cory       70.0
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>height_m</th>
+      <th>name</th>
+      <th>weight_kg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.6</td>
+      <td>Amy</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50.0</td>
+      <td>Barry</td>
+      <td>50.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>50.0</td>
+      <td>Cory</td>
+      <td>70.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 If you want to fill blanks by the averages of each column, you can do the following.</p>
 
-<pre><code class="language-python">print(screening_df.fillna(screening_df.mean()))
+<pre><code class="language-python">screening_df.fillna(screening_df.mean())
 </code></pre>
 
-<pre><code>   height_m   name  weight_kg
-0       1.6    Amy       60.0
-1       1.6  Barry       65.0
-2       1.6   Cory       70.0
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>height_m</th>
+      <th>name</th>
+      <th>weight_kg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.6</td>
+      <td>Amy</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.6</td>
+      <td>Barry</td>
+      <td>65.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.6</td>
+      <td>Cory</td>
+      <td>70.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 Another common way to fill missing values will be to determine the group that they belong to and use the means for that group.</p>
@@ -222,22 +307,59 @@ Another common way to fill missing values will be to determine the group that th
           'score': [1, 1, np.nan, 10, 10, np.nan]}
 
 scores_df = pd.DataFrame(scores)
-print(scores_df)
+scores_df
 </code></pre>
 
-<pre><code>  gender  score
-0      m    1.0
-1      m    1.0
-2      m    NaN
-3      f   10.0
-4      f   10.0
-5      f    NaN
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gender</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>m</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>m</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>m</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>f</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>f</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>f</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-<p>If we believe that there is a distinct difference for test performance between males and females and that the mean test scores for each gender will be a good proxy for the missing values, we can utilise the following code snippet to accomplish this.</p>
+<p><br>
+If we believe that there is a distinct difference for test performance between males and females and that the mean test scores for each gender will be a good proxy for the missing values, we can utilise the following code snippet to accomplish this.</p>
 
 <pre><code class="language-python">fill_mean = lambda scores: scores.fillna(scores.mean())
-print(scores_df.groupby('gender')['score'].apply(fill_mean))
+scores_df = scores_df.groupby('gender')['score'].apply(fill_mean)
+scores_df
 </code></pre>
 
 <pre><code>0     1.0

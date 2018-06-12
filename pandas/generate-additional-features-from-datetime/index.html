@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -188,17 +192,6 @@ df[['Start Date', 'Start Hour']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -236,17 +229,6 @@ df[['Start Date', 'Start Minute']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -284,17 +266,6 @@ df[['Start Date', 'Start Year']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -332,17 +303,6 @@ df[['Start Date', 'Start Month']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -384,17 +344,6 @@ df[['Start Date', 'Start Month Name']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -423,24 +372,14 @@ df[['Start Date', 'Start Month Name']].head()
 </table>
 </div>
 
-<p>If you&rsquo;re looking for the abbreviated version, <code>month_abbr()</code> has you covered.</p>
+<p><br>
+If you&rsquo;re looking for the abbreviated version, <code>month_abbr()</code> has you covered.</p>
 
 <pre><code class="language-python">df['Start Month Abbr'] = df['Start Month'].apply(lambda x: calendar.month_abbr[x])
 df[['Start Date', 'Start Month Abbr']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -480,17 +419,6 @@ df[['Start Date', 'Start Day']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -531,17 +459,6 @@ df[['Start Day Name', 'Start Day Abbr']].head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -565,6 +482,45 @@ df[['Start Day Name', 'Start Day Abbr']].head()
       <th>2</th>
       <td>Tuesday</td>
       <td>Tue</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><br></p>
+
+<h3 id="derive-week-ordinal-of-the-year">Derive Week Ordinal of the Year</h3>
+
+<p>There are instances where we are interested to create a variable that encodes for the week ordinal of the year. One common use case is to group users onboarded in the same week and track their engagement over time.</p>
+
+<pre><code class="language-python">df['Week Ordinal'] = df['Start Date'].dt.week
+df[['Start Date', 'Week Ordinal']].head()
+</code></pre>
+
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start Date</th>
+      <th>Week Ordinal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-09-01 00:10:00</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-09-01 01:29:00</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-09-01 02:15:00</td>
+      <td>36</td>
     </tr>
   </tbody>
 </table>

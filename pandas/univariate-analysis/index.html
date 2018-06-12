@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -165,6 +169,8 @@
 import numpy as np
 import scipy as sp
 import seaborn as sns
+
+%matplotlib inline
 </code></pre>
 
 <p><br></p>
@@ -172,7 +178,7 @@ import seaborn as sns
 <h3 id="set-seaborn-visualisation-options">Set Seaborn Visualisation Options</h3>
 
 <pre><code class="language-python">sns.set_style('whitegrid')
-sns.set_palette('Set3')
+sns.set_palette('pastel')
 </code></pre>
 
 <p><br></p>
@@ -182,37 +188,121 @@ sns.set_palette('Set3')
 <p>We will be using the tips dataset, which contains information collected by a waiter about his tips as well as the characteristics of the diner.</p>
 
 <pre><code class="language-python">tips = sns.load_dataset('tips')
-print(tips.head())
+tips.head()
 </code></pre>
 
-<pre><code>   total_bill   tip     sex smoker  day    time  size
-0       16.99  1.01  Female     No  Sun  Dinner     2
-1       10.34  1.66    Male     No  Sun  Dinner     3
-2       21.01  3.50    Male     No  Sun  Dinner     3
-3       23.68  3.31    Male     No  Sun  Dinner     2
-4       24.59  3.61  Female     No  Sun  Dinner     4
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_bill</th>
+      <th>tip</th>
+      <th>sex</th>
+      <th>smoker</th>
+      <th>day</th>
+      <th>time</th>
+      <th>size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16.99</td>
+      <td>1.01</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10.34</td>
+      <td>1.66</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21.01</td>
+      <td>3.50</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>23.68</td>
+      <td>3.31</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>24.59</td>
+      <td>3.61</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br></p>
 
 <h3 id="nominal-variables">Nominal Variables</h3>
 
-<p>For nominal variables, we can summarise the data using either a <em>frequency table</em> or a bar chart.</p>
+<p>For nominal variables, we can summarise the data using either a frequency table or a bar chart.</p>
 
-<pre><code class="language-python">sex_freq_table = tips['sex'].value_counts()
-print(sex_freq_table)
+<pre><code class="language-python">sex_freq_table = tips['sex'].value_counts().reset_index()
+sex_freq_table
 </code></pre>
 
-<pre><code>Male      157
-Female     87
-Name: sex, dtype: int64
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Male</td>
+      <td>157</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Female</td>
+      <td>87</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <pre><code class="language-python"># to control the aspect ratio of the plot
 fig, ax = plt.subplots(figsize=(2.5, 5))
 
 # unfortunate variable naming
-sex_bar = sns.barplot(x=sex_freq_table.index, y=sex_freq_table.values)
+sex_bar = sns.barplot(x=sex_freq_table['index'], y=sex_freq_table['sex'])
+ax.set_xlabel('Gender')
+ax.set_ylabel('Count', rotation=0, labelpad=25)
+
+sns.despine()
 </code></pre>
 
 <p><img src="output_9_0.png" alt="png" /></p>
@@ -240,15 +330,11 @@ sex_bar = sns.barplot(x=sex_freq_table.index, y=sex_freq_table.values)
 <pre><code>19.785942622950824
 </code></pre>
 
-<p><br></p>
-
 <pre><code class="language-python">print(np.median(tips['total_bill']))
 </code></pre>
 
 <pre><code>17.795
 </code></pre>
-
-<p><br></p>
 
 <pre><code class="language-python">print(sp.stats.mode(tips['total_bill']))
 </code></pre>
@@ -267,8 +353,6 @@ sex_bar = sns.barplot(x=sex_freq_table.index, y=sex_freq_table.values)
 
 <pre><code>8.88415057777113
 </code></pre>
-
-<p><br></p>
 
 <pre><code class="language-python">print(np.var(tips['total_bill'], ddof=0))
 </code></pre>

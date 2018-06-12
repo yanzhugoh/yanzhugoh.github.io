@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -147,7 +151,7 @@
 
 <h3 id="joining-dataframes-using-merge">Joining DataFrames Using Merge</h3>
 
-<p>If you are familiar with SQL and just started using Pandas, I am sure that you are hoping for a function that mimics the <code>JOIN</code> functions. Rest assured - you will not be disappointed.</p>
+<p>If you are familiar with SQL have just started using Pandas, I am sure that you are hoping for a function that mimics the <code>JOIN</code> functions. Rest assured - you will not be disappointed.</p>
 
 <p><br></p>
 
@@ -168,14 +172,33 @@ people = ['Amy', 'Barry', 'Cory']
 people_df = pd.DataFrame(data=people, index=people_id)
 people_df.columns = ['Name']
 
-print(people_df)
+people_df
 </code></pre>
 
-<pre><code>    Name
-1    Amy
-2  Barry
-3   Cory
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Amy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Barry</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Cory</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <pre><code class="language-python">flavor_id = [1, 2, 3]
 flavors = ['Chocolate', 'Strawberry', 'Vanilla']
@@ -183,33 +206,87 @@ flavors = ['Chocolate', 'Strawberry', 'Vanilla']
 flavors_df = pd.DataFrame(data=flavors, index=flavor_id)
 flavors_df.columns = ['Flavor']
 
-print(flavors_df)
+flavors_df
 </code></pre>
 
-<pre><code>       Flavor
-1   Chocolate
-2  Strawberry
-3     Vanilla
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Flavor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Chocolate</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Strawberry</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Vanilla</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 To link the data from the people and flavors dataframes, we will create a DataFrame that matches <code>people_id</code> and <code>flavor_id</code>.</p>
 
 <pre><code class="language-python">people_flavor = {'people_id': [1, 1, 1, 2, 2, 3], 
                  'flavor_id': [1, 2, 3, 1, 2, 1]}
+
 people_flavor_df = pd.DataFrame(people_flavor)
-
-print(people_flavor_df)
+people_flavor_df
 </code></pre>
 
-<pre><code>   flavor_id  people_id
-0          1          1
-1          2          1
-2          3          1
-3          1          2
-4          2          2
-5          1          3
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>flavor_id</th>
+      <th>people_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 Our end goal is to have a DataFrame that contains the person&rsquo;s name as well as their preferred flavor of ice cream. The first step is to combine the joining DataFrame with <code>people_df</code> to retrieve the names.</p>
@@ -217,37 +294,128 @@ Our end goal is to have a DataFrame that contains the person&rsquo;s name as wel
 <p>We are able to specifiy a join between a specific column of a DataFrame and the index of another DataFrame.</p>
 
 <pre><code class="language-python">people_flavor_df = people_flavor_df.merge(people_df, how='inner', left_on='people_id', right_index=True)
-print(people_flavor_df)
+people_flavor_df
 </code></pre>
 
-<pre><code>   flavor_id  people_id   Name
-0          1          1    Amy
-1          2          1    Amy
-2          3          1    Amy
-3          1          2  Barry
-4          2          2  Barry
-5          1          3   Cory
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>flavor_id</th>
+      <th>people_id</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>Amy</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>Amy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>Amy</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>Barry</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+      <td>Barry</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>3</td>
+      <td>Cory</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
 We complete the process by matching the indexes in column <code>flavor_id</code> with that in the <code>flavors_df</code>.</p>
 
 <pre><code class="language-python">people_flavor_df = people_flavor_df.merge(flavors_df, how='inner', 
                                           left_on='flavor_id', right_index=True)
-print(people_flavor_df)
+people_flavor_df
 </code></pre>
 
-<pre><code>   flavor_id  people_id   Name      Flavor
-0          1          1    Amy   Chocolate
-3          1          2  Barry   Chocolate
-5          1          3   Cory   Chocolate
-1          2          1    Amy  Strawberry
-4          2          2  Barry  Strawberry
-2          3          1    Amy     Vanilla
-</code></pre>
+<div>
+<table border="0" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>flavor_id</th>
+      <th>people_id</th>
+      <th>Name</th>
+      <th>Flavor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>Amy</td>
+      <td>Chocolate</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>Barry</td>
+      <td>Chocolate</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>3</td>
+      <td>Cory</td>
+      <td>Chocolate</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>Amy</td>
+      <td>Strawberry</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+      <td>Barry</td>
+      <td>Strawberry</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>Amy</td>
+      <td>Vanilla</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <p><br>
-While our example has been limited to inner joins, <code>merge</code> does allow us to specify the type of join using the <code>how</code> parameter.</p>
+While our examples have been limited to inner joins, <code>merge</code> does allow us to specify the type of join using the <code>how</code> parameter.</p>
 
 <ul>
 <li><code>left</code> uses only keys in the left DataFrame, similar to an SQL left outer join</li>

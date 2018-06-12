@@ -23,6 +23,10 @@
 
 <link rel="stylesheet" href="https://yanzhugoh.github.io/css/main.css">
 
+<link rel="stylesheet" href="https://yanzhugoh.github.io/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://yanzhugoh.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
 
@@ -173,17 +177,6 @@ tips.head()
 </code></pre>
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -252,7 +245,8 @@ tips.head()
 </table>
 </div>
 
-<p>When the <code>groupby</code> function is called, <strong>no splitting occurs</strong> until it is truly necessary. It only verifies that a valid mapping has been passed to the function.</p>
+<p><br>
+When the <code>groupby</code> function is called, <strong>no splitting occurs</strong> until it is truly necessary. It only verifies that a valid mapping has been passed to the function.</p>
 
 <pre><code class="language-python">group_sex_smoker = tips.groupby(['sex', 'smoker'])
 print(group_sex_smoker)
@@ -261,7 +255,8 @@ print(group_sex_smoker)
 <pre><code>&lt;pandas.core.groupby.DataFrameGroupBy object at 0x0000025B92933DD8&gt;
 </code></pre>
 
-<p>We can iterate the GroupBy object and print the label for each group. If we want to, we can also access the data of each group, but we will not be doing that here.</p>
+<p><br>
+We can iterate the GroupBy object and print the label for each group. If we want to, we can also access the data of each group, but we will not be doing that here.</p>
 
 <pre><code class="language-python">for group, data in group_sex_smoker:
     print(group)
@@ -404,7 +399,8 @@ FROM tips
 GROUP BY day;
 </code></pre>
 
-<p>This is addressed in Pandas using the <code>agg</code> function, where we can pass a dictionary of aggregation methods to the function which will then be applied onto the <code>DataFrameGroupBy</code> object.</p>
+<p><br>
+This is addressed in Pandas using the <code>agg</code> function, where we can pass a dictionary of aggregation methods to the function which will then be applied onto the <code>DataFrameGroupBy</code> object.</p>
 
 <p>The following code snippet demonstrates how we can perform multiple aggregations on the DataFrame.</p>
 
